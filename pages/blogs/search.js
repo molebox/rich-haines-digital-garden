@@ -8,7 +8,7 @@ import ContentBox from '@components/ContentBox';
 import Search from '@components/Search';
 import { Chakra } from '@components/Chakra';
 import { contentGlob, getBlogFileSlug } from '../blog/[...slug]';
-import { HomePageProvider } from 'src/context/home-page-context';
+import HomePageProvider from 'src/context/home-page-context';
 
 export default function SearchPage({ allMdx }) {
   const [filteredBlogs, setFilteredBlogs] = React.useState(allMdx);
