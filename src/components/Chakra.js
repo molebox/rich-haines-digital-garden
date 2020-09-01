@@ -27,6 +27,7 @@ import BigCloud1 from './big-cloud-1';
 import SmallCloud2 from './small-cloud-2';
 import BigCloud2 from './big-cloud-2';
 import SmallCloud1 from './small-cloud-1';
+import HomePageProvider from 'src/context/home-page-context';
 export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
   useEffect(() => {
     // let tl = gsap.timeline({repeat: 2, repeatDelay: 1});
@@ -35,6 +36,7 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
   }, []);
 
   return (
+    <HomePageProvider>
     <ChakraProvider
       resetCSS
       theme={theme}
@@ -99,6 +101,7 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
         {children}
       </Box>
     </ChakraProvider>
+    </HomePageProvider>
   );
 }
 

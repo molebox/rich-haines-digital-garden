@@ -1,11 +1,9 @@
 import { Flex, Text, Container } from '@chakra-ui/core';
 
 import { Chakra } from '@components/Chakra';
-import HomePageProvider from 'src/context/home-page-context';
 
 export default function Index({ cookies }) {
   return (
-    <HomePageProvider>
       <Chakra cookies={cookies}>
         <Flex justify="center" align="center" h="100%">
           <Container direction="column" maxW="1440px" centerContent>
@@ -33,7 +31,6 @@ export default function Index({ cookies }) {
           </Container>
         </Flex>
       </Chakra>
-    </HomePageProvider>
   );
 }
 
