@@ -8,6 +8,7 @@ import ContentBox from '@components/ContentBox';
 import Search from '@components/Search';
 import { Chakra } from '@components/Chakra';
 import { contentGlob, getBlogFileSlug } from '../blog/[...slug]';
+import { HomePageProvider } from 'src/context/home-page-context';
 
 export default function SearchPage({ allMdx }) {
   const [filteredBlogs, setFilteredBlogs] = React.useState(allMdx);
@@ -17,6 +18,7 @@ export default function SearchPage({ allMdx }) {
   };
 
   return (
+    <HomePageProvider>
     <Chakra evaluateThemeLazily>
       <Box pb={3}>
         {/* Content Area + Input + Tag filter */}
@@ -30,6 +32,7 @@ export default function SearchPage({ allMdx }) {
         </Stack>
       </Box>
     </Chakra>
+    </HomePageProvider>
   );
 }
 
