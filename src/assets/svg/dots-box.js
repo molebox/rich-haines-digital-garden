@@ -10,10 +10,8 @@ function DotsBox() {
       xmlns="http://www.w3.org/2000/svg"
       style={{
         position: 'absolute',
-        left: '40%',
-        right: '51%',
-        top: '82%',
-        bottom: '5%',
+        left: '10%',
+        bottom: '10%',
 
         // transform: 'rotate(89.77deg)',
       }}

@@ -4,19 +4,18 @@ import { gsap } from 'gsap';
 // import {MotionPathPlugin} from 'gsap/MotionPathPlugin';
 function SmallCloud2() {
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
-        const TL = gsap.timeline({repeat: -1, yoyo: true})
-        TL.from('#small-cloud-2', {
-          y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
-          ease: 'back(5)'
-        })
-        .to('#small-cloud-2', {
-          x: window.innerWidth * 0.90, // window.innerWidth * 0.95
-          repeat: -1,
-          yoyo: true,
-          duration: gsap.utils.random(10, 90)
-        })
-      }
+    if (typeof window !== 'undefined') {
+      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 3.4 });
+      TL.from('#small-cloud-2', {
+        y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
+        ease: 'back(5)',
+      }).to('#small-cloud-2', {
+        x: window.innerWidth * 0.9, // window.innerWidth * 0.95
+        repeat: -1,
+        yoyo: true,
+        duration: gsap.utils.random(70, 90),
+      });
+    }
     // let tl = gsap.timeline();
     // tl.fromTo(
     //   '#small-cloud-2',

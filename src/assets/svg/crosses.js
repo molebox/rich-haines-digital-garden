@@ -1,4 +1,5 @@
 import React from 'react';
+import { gsap } from 'gsap';
 
 function Crosses() {
   return (
@@ -10,11 +11,10 @@ function Crosses() {
       xmlns="http://www.w3.org/2000/svg"
       style={{
         position: 'absolute',
-        left: '0%',
-        right: '88.06%',
-        top: '41.01%',
+        left: '1%',
+        top: '2%',
         bottom: '49.19%',
-
+        zIndex: 13,
         transform: 'rotate(-0.31deg)',
       }}
     >

@@ -10,10 +10,8 @@ function ZigZags() {
       xmlns="http://www.w3.org/2000/svg"
       style={{
         position: 'absolute',
-        left: '72.84%',
-        right: '19.25%',
-        top: '28.52%,',
-        bottom: '69.24%',
+        right: '30%',
+        top: '-15%,',
         zIndex: 11,
         // transform: 'rotate(-89.76deg)',
       }}

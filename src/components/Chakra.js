@@ -10,24 +10,7 @@ import Navbar from '@components/Navbar';
 import SEO from '@components/SEO';
 import theme from '../theme';
 import { useEffect } from 'react';
-import { gsap } from 'gsap';
-import Sun from 'src/assets/svg/sun';
-import FourDotsHorizontal from './../assets/svg/four-dots-horizontal';
-import FourDotsDiagonal from './../assets/svg/four-dots-diagonal';
-import Triangle from 'src/assets/svg/triangle';
-import SemiCircle from 'src/assets/svg/semi-circle';
-import ZigZags from 'src/assets/svg/zig-zags';
-import DotsBox from 'src/assets/svg/dots-box';
-import Crosses from 'src/assets/svg/crosses';
-import SingleCrossLarge from 'src/assets/svg/single-cross-large';
-import SingleCrossSmall1 from '../assets/svg/single-cross-small-1';
-import SingleCrossSmall2 from 'src/assets/svg/single-cross-small-2';
-import Draggable from 'react-draggable';
-import BigCloud1 from './big-cloud-1';
-import SmallCloud2 from './small-cloud-2';
-import BigCloud2 from './big-cloud-2';
-import SmallCloud1 from './small-cloud-1';
-import HomePageProvider from 'src/context/home-page-context';
+
 export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
   useEffect(() => {
     // let tl = gsap.timeline({repeat: 2, repeatDelay: 1});
@@ -36,7 +19,6 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
   }, []);
 
   return (
-    <HomePageProvider>
     <ChakraProvider
       resetCSS
       theme={theme}
@@ -61,47 +43,8 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
       {/* <Navbar /> */}
       {evaluateThemeLazily && <LazyThemeEvaluator />}
 
-      <Box
-        bgImage="url(/bg.svg)"
-        bgPos="center"
-        bgRepeat="no-repeat"
-        bgSize="cover"
-        h="100vh"
-        w="100vw"
-        overflowX="hidden"
-        // cursor="url(/sponge-bob-pointing.png), auto"
-      >
-        <Sun />
-        <FourDotsHorizontal />
-        <FourDotsDiagonal />
-        <Triangle />
-        <SemiCircle />
-        <DotsBox />
-        <Crosses />
-        <SingleCrossLarge />
-        <SingleCrossSmall1 />
-        <SingleCrossSmall2 />
-        <ZigZags />
-        <Image
-          boxSize={100}
-          fit="cover"
-          src="sponge-bob-pointing.png"
-          style={{
-            position: 'absolute',
-            top: '15%',
-            right: '46%',
-            zIndex: 11,
-          }}
-          alt="SpongeBob Square Pants Pointing"
-        />
-        <BigCloud1 />
-        <BigCloud2 />
-        <SmallCloud1 />
-        <SmallCloud2 />
-        {children}
-      </Box>
+      {children}
     </ChakraProvider>
-    </HomePageProvider>
   );
 }
 

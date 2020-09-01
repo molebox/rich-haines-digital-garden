@@ -4,19 +4,18 @@ import { gsap } from 'gsap';
 
 function BigCloud2() {
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
-        const TL = gsap.timeline({repeat: -1, yoyo: true, delay: 1})
-        TL.from('#big-cloud-2', {
-          y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
-          ease: 'back(5)'
-        })
-        .to('#big-cloud-2', {
-          x: window.innerWidth * 0.90, // window.innerWidth * 0.95
-          repeat: -1,
-          yoyo: true,
-          duration: gsap.utils.random(20, 100)
-        })
-      }
+    if (typeof window !== 'undefined') {
+      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 2 });
+      TL.from('#big-cloud-2', {
+        y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
+        ease: 'back(5)',
+      }).to('#big-cloud-2', {
+        x: window.innerWidth * 0.9, // window.innerWidth * 0.95
+        repeat: -1,
+        yoyo: true,
+        duration: gsap.utils.random(20, 40),
+      });
+    }
     // let tl = gsap.timeline();
     // tl.fromTo(
     //   '#big-cloud-2',
