@@ -25,19 +25,21 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
       // storageManager={cookieStorage(cookies)}
     >
       <SEO
-        title="Nextjs + MDX Starter pack"
-        description="This is an opinionated way to handle MDX from multiple sources in a Next project with some help styling from ChakraUI"
-        url="www.whatever.com"
+        title="Rich Haines Digital Garden"
+        description="This is the new home for my digital garden. Its a fun space for
+        me to experiment with stuff and spill my thoughts into MDX
+        (Because MDX is cool)"
+        url="https://garden.richardhaines.dev/"
         ogImage={{
-          url: 'www.whatever.com',
-          title: 'OG Image title',
-          description: 'Describe the OG image',
+          url: 'https://garden.richardhaines.dev/',
+          title: 'Rich Haines Digital Garden',
+          description: 'A fun space for me to experiment with stuff and spill my thoughts into MDX',
           image: ``,
-          siteName: 'Your site name',
+          siteName: 'garden.richardhaines.dev',
         }}
         twitter={{
-          handle: '@domitriusclark',
-          site: 'https://twitter.com/domitriusclark',
+          handle: '@studio_hungry',
+          site: 'https://garden.richardhaines.dev/',
         }}
       />
       {/* <Navbar /> */}
