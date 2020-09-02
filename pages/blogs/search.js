@@ -8,6 +8,7 @@ import ContentBox from '@components/ContentBox';
 import Search from '@components/Search';
 import { Chakra } from '@components/Chakra';
 import { contentGlob, getBlogFileSlug } from '../blog/[...slug]';
+import Navbar from '@components/Navbar';
 
 export default function SearchPage({ allMdx }) {
   const [filteredBlogs, setFilteredBlogs] = React.useState(allMdx);
@@ -37,6 +38,7 @@ export default function SearchPage({ allMdx }) {
             ))}
           </Stack>
         </Stack>
+        <Navbar />
       </Box>
     </Chakra>
   );

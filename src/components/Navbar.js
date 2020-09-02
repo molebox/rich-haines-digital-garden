@@ -11,46 +11,65 @@ function NavLink({ children, ...props }) {
   );
 }
 
-export default function Navbar() {
-  const { generateUrl, url, isLoading } = useImage({
-    cloudName: 'testing-hooks-upload',
-  });
+export default function Navbar({ showGardenLink }) {
+  // const { generateUrl, url, isLoading } = useImage({
+  //   cloudName: 'testing-hooks-upload',
+  // });
 
-  React.useEffect(() => {
-    generateUrl({
-      publicId: 'transparent_dom_logo',
-      transforms: {
-        height: 30,
-        width: 30,
-      },
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   generateUrl({
+  //     publicId: 'transparent_dom_logo',
+  //     transforms: {
+  //       height: 30,
+  //       width: 30,
+  //     },
+  //   });
+  // }, []);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <Flex
-      w="100%"
+      h="50vh"
       px={5}
       py={4}
-      justifyContent="space-between"
+      direction="column"
+      justifyContent="space-evenly"
       alignItems="center"
+      position="fixed"
+      right="0"
+      top="200px"
     >
-      <Flex flexDirection="row" justifyContent="center" alignItems="center">
-        <Image src={url} boxSize={30} alt="Navbar logo" />
-        <Text pl={3}>richardhaines.dev</Text>
-      </Flex>
-      <Box>
-        <ThemeTogglebutton />
-        <NavLink ml={4} href="/">
-          Home
-        </NavLink>
+      <NavLink ml={4} href="/">
+        <Text
+          transform="rotate(90deg)"
+          fontFamily="heading"
+          fontSize="1xl"
+          borderBottom="solid 2px"
+          borderColor="brand.crayola.500"
+          _hover={{ borderColor: 'brand.crayola.200' }}
+          p={2}
+        >
+          The funky page
+        </Text>
+      </NavLink>
+      {showGardenLink ? (
         <NavLink ml={4} href="/blogs/search">
-          The Garden
+          <Text
+            transform="rotate(90deg)"
+            fontFamily="heading"
+            fontSize="1xl"
+            borderBottom="solid 2px"
+            borderColor="brand.crayola.500"
+            _hover={{ borderColor: 'brand.crayola.200' }}
+            p={2}
+          >
+            The Garden
+          </Text>
         </NavLink>
-      </Box>
+      ) : null}
     </Flex>
   );
 }

@@ -20,6 +20,10 @@ export default function Code({ children, className }) {
             marginTop: 20,
             marginBottom: 20,
             padding: 16,
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            position: 'relative',
           }}
         >
           {tokens.map((line, i) => (

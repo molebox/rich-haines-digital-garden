@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Fuse from 'fuse.js';
 
-import { Flex, Stack, Input } from '@chakra-ui/core';
+import { Flex, Stack, Input, Text } from '@chakra-ui/core';
 
 import TagList from './TagList';
 
-const TAG_LIST = ['react', 'nextjs', 'chakra ui'];
+// const TAG_LIST = ['react', 'nextjs', 'chakra ui'];
 
 const fuseOptions = {
   threshold: 0.35,
@@ -49,13 +49,13 @@ export default function Search({ blogs, handleFilter }) {
     setSearchValue(value);
   };
 
-  const onTagClick = (tag) => {
-    if (searchTags.includes(tag)) {
-      setSearchTags(searchTags.filter((included) => included != tag));
-    } else {
-      setSearchTags([...searchTags, tag]);
-    }
-  };
+  // const onTagClick = (tag) => {
+  //   if (searchTags.includes(tag)) {
+  //     setSearchTags(searchTags.filter((included) => included != tag));
+  //   } else {
+  //     setSearchTags([...searchTags, tag]);
+  //   }
+  // };
 
   return (
     <Stack
@@ -64,10 +64,24 @@ export default function Search({ blogs, handleFilter }) {
       align="center"
       spacing={[6, 8, 10]}
     >
-      <Flex justify="space-around">
+      {/* <Flex justify="space-around">
         <TagList tags={TAG_LIST} value={searchTags} onChange={setSearchTags} />
-      </Flex>
-      <Input value={searchValue} onChange={onChange} />
+      </Flex> */}
+      <Text fontSize="5xl" textAlign="center" fontFamily="heading" my={5}>
+        A digital garden
+      </Text>
+      <Text fontSize="3xl" textAlign="center" fontFamily="heading" mb={2}>
+        Ordered by the latest, these are my writings
+      </Text>
+      <Input
+        placeholder="Enter a search term"
+        p={2}
+        border="solid 2px"
+        borderColor="brand.amethyst.500"
+        borderRadius="5px"
+        value={searchValue}
+        onChange={onChange}
+      />
     </Stack>
   );
 }

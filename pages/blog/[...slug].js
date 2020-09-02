@@ -7,11 +7,34 @@ import glob from 'fast-glob';
 
 import Code from '@components/Code';
 import { Chakra } from '@components/Chakra';
-import { Box, Container, Text } from '@chakra-ui/core';
+import { Box, Container, Text, UnorderedList, ListItem } from '@chakra-ui/core';
 import SemiCircle from 'src/assets/svg/semi-circle';
 import ZigZags from './../../src/assets/svg/zig-zags';
+import Navbar from '@components/Navbar';
 
-const components = { code: Code };
+const components = {
+  code: Code,
+  h1: (props) => (
+    <Text fontSize="2xl" fontFamily="heading" mb={3}>
+      {props.children}
+    </Text>
+  ),
+  h2: (props) => (
+    <Text fontSize="1xl" fontFamily="heading" my={3}>
+      {props.children}
+    </Text>
+  ),
+  h3: (props) => (
+    <Text fontSize="xl" fontFamily="heading" my={3}>
+      {props.children}
+    </Text>
+  ),
+  ul: (props) => (
+    <UnorderedList my={2}>
+      <ListItem>{props.children}</ListItem>
+    </UnorderedList>
+  ),
+};
 
 export default function BlogPost({ mdxSource, frontMatter }) {
   const content = hydrate(mdxSource, { components });
@@ -29,11 +52,12 @@ export default function BlogPost({ mdxSource, frontMatter }) {
         <SemiCircle />
         <ZigZags />
         <Container maxW="1440px">
-          <Text fontSize="5xl" textAlign="center">
+          <Text fontSize="5xl" textAlign="center" fontFamily="heading">
             {frontMatter.title}
           </Text>
           {content}
         </Container>
+        <Navbar showGardenLink />
       </Box>
     </Chakra>
   );
