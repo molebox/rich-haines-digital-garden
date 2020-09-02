@@ -13,7 +13,7 @@ function SmallCloud2() {
         x: window.innerWidth * 0.8, // window.innerWidth * 0.95
         repeat: -1,
         yoyo: true,
-        duration: gsap.utils.random(70, 90),
+        duration: gsap.utils.random(30, 60),
       });
     }
     // let tl = gsap.timeline();

@@ -1,9 +1,9 @@
 {
-  "name": "mdnext-base",
-  "description": "This example shows using [MDX](https://github.com/mdx-js/mdx) with NextJS utilizing next-mdx-remote",
+  "name": "rich-haines-digital-garden",
+  "description": "This is my digital garden",
   "version": "1.0.1",
-  "repository": "https://github.com/domitriusclark/mdnext-base.git",
-  "author": "domitriusclark",
+  "repository": "https://github.com/molebox/rich-haines-digital-garden.git",
+  "author": "Rich Haines",
   "main": "next.config.js",
   "scripts": {
     "build": "next build",

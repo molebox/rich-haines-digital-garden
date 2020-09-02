@@ -8,7 +8,6 @@ import FourDotsHorizontal from 'src/assets/svg/four-dots-horizontal';
 import FourDotsDiagonal from 'src/assets/svg/four-dots-diagonal';
 import Triangle from 'src/assets/svg/triangle';
 import SemiCircle from 'src/assets/svg/semi-circle';
-import DotsBox from 'src/assets/svg/dots-box';
 import Crosses from 'src/assets/svg/crosses';
 import ThreeTriangles from 'src/assets/svg/three-triangles';
 import SingleCrossSmall1 from './../src/assets/svg/single-cross-small-1';
@@ -89,7 +88,16 @@ export default function Index({ cookies }) {
         </Box>
         <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
           <Container centerContent>
-            <Text fontSize="xl">Here is some text about some stuff</Text>
+            <Text fontSize="xl" mt={4}>
+              This section is going to use ScrollTrigger and a pin to show different panel layers
+            </Text>
+          </Container>
+        </Box>
+        <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
+          <Container centerContent>
+            <Text fontSize="xl" mt={4}>
+              Haven't decided whats going to go here... Exciting!
+            </Text>
           </Container>
         </Box>
       </Chakra>
