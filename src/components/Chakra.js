@@ -20,13 +20,13 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
   }, []);
 
   const socialImage = getShareImage({
-    title: title,
-    tagline: keywords.map((tag) => `• ${tag}`).join(' '),
+    title: 'Rich Haines Digital Garden',
+    tagline: 'A fun space for me to experiment with stuff and spill my thoughts into MDX',
     cloudName: 'richardhaines',
     imagePublicID: 'social-card/social-card-garden',
     textAreaWidth: 1193,
     textLeftOffset: 100,
-    titleFontSize: 110,
+    titleFontSize: 70,
     titleExtraConfig: '_bold',
     titleBottomOffset: 200,
     titleGravity: 'north_west',
@@ -34,7 +34,7 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
     titleFont: 'Gagalin-Regular.ttf',
     taglineFont: 'Gagalin-Regular.ttf',
     taglineTopOffset: 547,
-    taglineFontSize: 24,
+    taglineFontSize: 20,
     textColor: '9B5DE5',
     version: 'v1599074590',
   });
