@@ -1,20 +1,19 @@
 import React from 'react';
+import { Box } from '@chakra-ui/core';
 
 function DotsBox() {
   return (
-    <svg
-      width="222"
-      height="120"
+    <Box
+      as="svg"
+      width="222px"
+      height="120px"
       viewBox="0 0 222 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '10%',
-        bottom: '10%',
-
-        // transform: 'rotate(89.77deg)',
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      left="10%"
+      bottom="10%"
     >
       <g id="dots-box">
         <path
@@ -197,7 +196,7 @@ function DotsBox() {
           fill="#FEE440"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 

@@ -1,19 +1,19 @@
 import React from 'react';
+import { Box } from '@chakra-ui/core';
 
 function SemiCircle() {
   return (
-    <svg
-      width="99"
-      height="384"
+    <Box
+      as="svg"
+      width="99px"
+      height="384px"
       viewBox="0 0 99 384"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '0',
-        top: '45%',
-        bottom: '20%',
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      left="0"
+      top="400px"
     >
       <g id="semi-circle">
         <g id="semi-circle-outer-2">
@@ -65,7 +65,7 @@ function SemiCircle() {
           </g>
         </g>
       </g>
-    </svg>
+    </Box>
   );
 }
 

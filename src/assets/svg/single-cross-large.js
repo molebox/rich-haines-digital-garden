@@ -4,6 +4,7 @@ import {
   HomePageStateContext,
   HomePageDispatchContext,
 } from './../../context/home-page-context';
+import { Box } from '@chakra-ui/core';
 
 function SingleCrossLarge() {
   const state = React.useContext(HomePageStateContext);
@@ -18,19 +19,17 @@ function SingleCrossLarge() {
   }, [state.onSingleCrossLarge]);
 
   return (
-    <svg
-      width="43"
-      height="43"
+    <Box
+      as="svg"
+      width="43px"
+      height="43px"
       viewBox="0 0 43 43"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '84%',
-        right: '12%',
-        top: '28%',
-        bottom: '67%',
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      right="12%"
+      top="250px"
       onMouseEnter={() =>
         dispatch({ type: 'onSingleCrossLarge', payload: true })
       }
@@ -54,7 +53,7 @@ function SingleCrossLarge() {
           strokeMiterlimit="10"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 

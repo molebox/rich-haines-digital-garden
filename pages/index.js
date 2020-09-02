@@ -28,16 +28,15 @@ export default function Index({ cookies }) {
           bgRepeat="no-repeat"
           bgSize="cover"
           h="100vh"
-          w="100vw"
+          w="100%"
           overflowX="hidden"
-          // cursor="url(/sponge-bob-pointing.png), auto"
         >
           <Sun />
           <FourDotsHorizontal />
           <FourDotsDiagonal />
           <Triangle />
           <SemiCircle />
-          <DotsBox />
+          {/* <DotsBox /> */}
           <Crosses />
           <ThreeTriangles />
           {/* <SingleCrossLarge /> */}
@@ -48,12 +47,11 @@ export default function Index({ cookies }) {
             boxSize={100}
             fit="cover"
             src="sponge-bob-pointing.png"
-            style={{
-              position: 'absolute',
-              top: '15%',
-              right: '46%',
-              zIndex: 11,
-            }}
+            display={['none', 'block']}
+            position="absolute"
+            top="140px"
+            right="45.5%"
+            zIndex={11}
             alt="SpongeBob Square Pants Pointing"
           />
           <BigCloud1 />
@@ -64,21 +62,23 @@ export default function Index({ cookies }) {
             <Container direction="column" maxW="1440px" centerContent>
               <Text
                 color="brand.text"
-                fontSize={['3xl', '6xl']}
+                fontSize={['xl', '6xl']}
                 fontFamily="heading"
               >
                 hello, im rich haines
               </Text>
               <Text
                 color="brand.text"
-                fontSize={['3xl', '4xl']}
+                fontSize={['md', '4xl']}
                 fontFamily="heading"
+                textAlign="center"
+                my={3}
               >
                 A software developer who specializes in Jamstack development
               </Text>
               <Text
                 color="brand.text"
-                fontSize={['2xl', '3xl']}
+                fontSize={['md', '3xl']}
                 fontFamily="heading"
               >
                 I love to experiment with stuff
@@ -86,6 +86,11 @@ export default function Index({ cookies }) {
               <NavLink href="/blogs/search">Tend Garden</NavLink>
             </Container>
           </Flex>
+        </Box>
+        <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
+          <Container centerContent>
+            <Text fontSize="xl">Here is some text about some stuff</Text>
+          </Container>
         </Box>
       </Chakra>
     </HomePageProvider>

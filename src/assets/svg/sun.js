@@ -1,19 +1,19 @@
 import React from 'react';
+import { Box } from '@chakra-ui/core';
 
 function Sun() {
   return (
-    <svg
-      width="228"
-      height="464"
+    <Box
+      as="svg"
+      width="228px"
+      height="464px"
       viewBox="0 0 228 464"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        right: '0.03%',
-        top: '41.02%',
-        bottom: '13.99%',
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      right="0"
+      top="400px"
     >
       <g id="sun">
         <path
@@ -74,7 +74,7 @@ function Sun() {
           strokeMiterlimit="10"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 

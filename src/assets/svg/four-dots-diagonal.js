@@ -1,20 +1,19 @@
 import React from 'react';
+import { Box } from '@chakra-ui/core';
 
 function FourDotsDiagonal() {
   return (
-    <svg
-      width="125"
-      height="127"
+    <Box
+      as="svg"
+      width="125px"
+      height="127px"
       viewBox="0 0 125 127"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '70.69%',
-        right: '20.69%',
-        top: '68.16%',
-        bottom: '19.47%',
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      right="20%"
+      top="700px"
     >
       <g id="4-dots-diagonal">
         <path
@@ -38,7 +37,7 @@ function FourDotsDiagonal() {
           fill="#00F5D4"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 

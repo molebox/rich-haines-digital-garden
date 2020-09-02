@@ -1,22 +1,22 @@
 import React from 'react';
 import { gsap } from 'gsap';
+import { Box } from '@chakra-ui/core';
 
 function Crosses() {
   return (
-    <svg
-      width="173"
-      height="102"
+    <Box
+      as="svg"
+      width="173px"
+      height="102px"
       viewBox="0 0 173 102"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '1%',
-        top: '2%',
-        bottom: '49.19%',
-        zIndex: 13,
-        transform: 'rotate(-0.31deg)',
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      left="15px"
+      top="15px"
+      zIndex={13}
+      transform="rotate(-0.31deg)"
     >
       <g id="crosses">
         <g id="vertical-1">
@@ -302,7 +302,7 @@ function Crosses() {
           </g>
         </g>
       </g>
-    </svg>
+    </Box>
   );
 }
 

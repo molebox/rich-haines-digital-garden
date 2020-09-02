@@ -10,7 +10,7 @@ function BigCloud1() {
         y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
         ease: 'back(5)',
       }).to('#big-cloud-1', {
-        x: window.innerWidth * 0.9, // window.innerWidth * 0.95
+        x: window.innerWidth * 0.8, // window.innerWidth * 0.95
         repeat: -1,
         yoyo: true,
         duration: gsap.utils.random(40, 75),
@@ -32,9 +32,10 @@ function BigCloud1() {
       w={150}
       fit="cover"
       src="cloud-1-big.png"
+      display={['none', 'block']}
       style={{
         position: 'absolute',
-        top: '5%',
+        top: '25px',
         // left: '20%',
         zIndex: 10,
       }}

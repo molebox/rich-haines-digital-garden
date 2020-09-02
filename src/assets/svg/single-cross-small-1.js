@@ -4,6 +4,7 @@ import {
   HomePageStateContext,
   HomePageDispatchContext,
 } from './../../context/home-page-context';
+import { Box } from '@chakra-ui/core';
 
 function SingleCrossSmall1() {
   const state = React.useContext(HomePageStateContext);
@@ -19,20 +20,18 @@ function SingleCrossSmall1() {
   }, [state.onSingleCrossSmall1]);
 
   return (
-    <svg
-      width="20"
-      height="20"
+    <Box
+      as="svg"
+      width="20px"
+      height="20px"
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '16.67%',
-        right: '82.1%',
-        top: '64.84%',
-        bottom: '33.38%',
-        zIndex: 11,
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      left="18%"
+      top="600px"
+      zIndex={11}
       onMouseEnter={() =>
         dispatch({ type: 'onSingleCrossSmall1', payload: true })
       }
@@ -56,7 +55,7 @@ function SingleCrossSmall1() {
           strokeMiterlimit="10"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 export default SingleCrossSmall1;

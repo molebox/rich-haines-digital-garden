@@ -1,5 +1,6 @@
 import React from 'react';
 import { gsap } from 'gsap';
+import { Box } from '@chakra-ui/core';
 
 function FourDotsHorizontal() {
   React.useEffect(() => {
@@ -27,20 +28,17 @@ function FourDotsHorizontal() {
   }, []);
 
   return (
-    <svg
-      width="178"
-      height="178"
+    <Box
+      as="svg"
+      width="178px"
+      height="178px"
       viewBox="0 0 178 178"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '16.18%',
-        right: '75.21%',
-        top: '20.54%',
-        bottom: '57.09%',
-        // transform: 'rotate(-45.04deg)'
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      left="16%"
+      top="170px"
     >
       <g id="4-dots-horizontal">
         <path
@@ -64,7 +62,7 @@ function FourDotsHorizontal() {
           fill="#00F5D4"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 

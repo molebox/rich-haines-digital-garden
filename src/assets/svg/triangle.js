@@ -1,21 +1,20 @@
 import React from 'react';
+import { Box } from '@chakra-ui/core';
 
 function Triangle() {
   return (
-    <svg
-      width="85"
-      height="75"
+    <Box
+      as="svg"
+      width="85px"
+      height="75px"
       viewBox="0 0 85 75"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '16%',
-        right: '80%',
-        top: '15%',
-        bottom: '74%',
-        zIndex: 11,
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      left="16%"
+      top="150px"
+      zIndex={11}
     >
       <g id="triangle">
         <path
@@ -24,7 +23,7 @@ function Triangle() {
           fill="#EB1E99"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 

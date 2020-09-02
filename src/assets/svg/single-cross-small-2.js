@@ -1,5 +1,6 @@
 import React from 'react';
 import { gsap } from 'gsap';
+import { Box } from '@chakra-ui/core';
 
 function SingleCrossSmall2() {
   React.useEffect(() => {
@@ -11,20 +12,18 @@ function SingleCrossSmall2() {
   }, []);
 
   return (
-    <svg
-      width="20"
-      height="20"
+    <Box
+      as="svg"
+      width="20px"
+      height="20px"
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        left: '54.86%',
-        right: '43.9%',
-        top: '12.6%',
-        bottom: '85.63%',
-        zIndex: 11,
-      }}
+      display={['none', 'block']}
+      position="absolute"
+      left="54.86%"
+      top="120px"
+      zIndex={11}
     >
       <g id="single-cross-small-2">
         <path
@@ -42,7 +41,7 @@ function SingleCrossSmall2() {
           strokeMiterlimit="10"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 export default SingleCrossSmall2;

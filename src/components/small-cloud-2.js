@@ -10,7 +10,7 @@ function SmallCloud2() {
         y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
         ease: 'back(5)',
       }).to('#small-cloud-2', {
-        x: window.innerWidth * 0.9, // window.innerWidth * 0.95
+        x: window.innerWidth * 0.8, // window.innerWidth * 0.95
         repeat: -1,
         yoyo: true,
         duration: gsap.utils.random(70, 90),
@@ -32,9 +32,10 @@ function SmallCloud2() {
       w={100}
       fit="cover"
       src="cloud-2-small.png"
+      display={['none', 'block']}
       style={{
         position: 'absolute',
-        top: '15%',
+        top: '65px',
         // left: '40%',
         zIndex: 10,
       }}
