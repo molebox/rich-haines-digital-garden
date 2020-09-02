@@ -7,6 +7,9 @@ import glob from 'fast-glob';
 
 import Code from '@components/Code';
 import { Chakra } from '@components/Chakra';
+import { Box, Container, Text } from '@chakra-ui/core';
+import SemiCircle from 'src/assets/svg/semi-circle';
+import ZigZags from './../../src/assets/svg/zig-zags';
 
 const components = { code: Code };
 
@@ -14,11 +17,24 @@ export default function BlogPost({ mdxSource, frontMatter }) {
   const content = hydrate(mdxSource, { components });
 
   return (
-    <Chakra evaluateThemeLazily>
-      <div>
-        <h1>{frontMatter.title}</h1>
-        {content}
-      </div>
+    <Chakra>
+      <Box
+        bgImage="url(/bg.svg)"
+        bgPos="center"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        h="100%"
+        p={5}
+      >
+        <SemiCircle />
+        <ZigZags />
+        <Container maxW="1440px">
+          <Text fontSize="5xl" textAlign="center">
+            {frontMatter.title}
+          </Text>
+          {content}
+        </Container>
+      </Box>
     </Chakra>
   );
 }

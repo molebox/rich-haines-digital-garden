@@ -58,7 +58,7 @@ export default function Index({ cookies }) {
           <SmallCloud1 />
           <SmallCloud2 />
           <Flex justify="center" align="center" h="100%">
-            <Container direction="column" maxW="1440px" centerContent>
+            <Container direction="column" maxW="1000px" centerContent>
               <Text
                 color="brand.text"
                 fontSize={['xl', '6xl']}
@@ -68,7 +68,7 @@ export default function Index({ cookies }) {
               </Text>
               <Text
                 color="brand.text"
-                fontSize={['md', '4xl']}
+                fontSize={['md', '3xl']}
                 fontFamily="heading"
                 textAlign="center"
                 my={3}
@@ -77,19 +77,24 @@ export default function Index({ cookies }) {
               </Text>
               <Text
                 color="brand.text"
-                fontSize={['md', '3xl']}
+                fontSize={['md', '2xl']}
                 fontFamily="heading"
+                textAlign="center"
+                my={3}
               >
-                I love to experiment with stuff
+                This is the new home for my digital garden. Its a fun space for
+                me to experiment with stuff and spill my thoughts into MDX
+                (Because MDX is cool).
               </Text>
-              <NavLink href="/blogs/search">Tend Garden</NavLink>
+              <NavLink href="/blogs/search">canvass Garden</NavLink>
             </Container>
           </Flex>
         </Box>
         <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
           <Container centerContent>
             <Text fontSize="xl" mt={4}>
-              This section is going to use ScrollTrigger and a pin to show different panel layers
+              This section is going to use ScrollTrigger and a pin to show
+              different panel layers
             </Text>
           </Container>
         </Box>

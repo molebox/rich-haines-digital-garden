@@ -10,9 +10,9 @@ export default function ContentBox({ blog }) {
     >
       <Box
         role="group"
-        maxW="500px"
-        border="1px"
-        borderColor="black"
+        maxW="1440px"
+        border="solid 3px"
+        borderColor="brand.crayola.500"
         borderRadius="8px"
         p={8}
       >

@@ -17,8 +17,17 @@ export default function SearchPage({ allMdx }) {
   };
 
   return (
-    <Chakra evaluateThemeLazily>
-      <Box pb={3}>
+    <Chakra>
+      <Box
+        bgImage="url(/bg.svg)"
+        bgPos="center"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        h="100vh"
+        w="100%"
+        overflowX="hidden"
+        pb={3}
+      >
         {/* Content Area + Input + Tag filter */}
         <Stack spacing={[4, 8, 12]} justify="center" alignItems="center">
           <Search blogs={allMdx} handleFilter={handleFilter} />

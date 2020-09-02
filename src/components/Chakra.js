@@ -41,7 +41,7 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
         }}
       />
       {/* <Navbar /> */}
-      {evaluateThemeLazily && <LazyThemeEvaluator />}
+      {/* {evaluateThemeLazily && <LazyThemeEvaluator />} */}
 
       {children}
     </ChakraProvider>

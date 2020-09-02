@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 function BigCloud2() {
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 2 });
+      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 2.5 });
       TL.from('#big-cloud-2', {
         y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
         ease: 'back(5)',

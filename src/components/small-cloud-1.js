@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 function SmallCloud1() {
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 2.5 });
+      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 3.5 });
       TL.from('#small-cloud-1', {
         y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
         ease: 'back(5)',

@@ -1,20 +1,19 @@
 import React from 'react';
+import { Box } from '@chakra-ui/core';
 
 function ZigZags() {
   return (
-    <svg
-      width="62"
-      height="118"
+    <Box
+      as="svg"
+      width="62px"
+      height="118px"
       viewBox="0 0 62 118"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        right: '30%',
-        top: '-15%,',
-        zIndex: 11,
-        // transform: 'rotate(-89.76deg)',
-      }}
+      position="absolute"
+      right="5%"
+      top="30px"
+      zIndex={11}
     >
       <g id="zig-zags">
         <path
@@ -32,7 +31,7 @@ function ZigZags() {
           strokeMiterlimit="10"
         />
       </g>
-    </svg>
+    </Box>
   );
 }
 
