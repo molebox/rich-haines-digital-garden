@@ -10,6 +10,7 @@ import Navbar from '@components/Navbar';
 import SEO from '@components/SEO';
 import theme from '../theme';
 import { useEffect } from 'react';
+import getShareImage from '@jlengstorf/get-share-image';
 
 export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
   useEffect(() => {
@@ -17,6 +18,26 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
     // gsap.to("#zig-zags", {y : 18}, {y: -18, yoyo: true})
     // gsap.to("#zag", {x: 500, duration: 3, repeat: 2, yoyo: true});
   }, []);
+
+  const socialImage = getShareImage({
+    title: title,
+    tagline: keywords.map((tag) => `• ${tag}`).join(' '),
+    cloudName: 'richardhaines',
+    imagePublicID: 'social-card/social-card-garden',
+    textAreaWidth: 1193,
+    textLeftOffset: 100,
+    titleFontSize: 110,
+    titleExtraConfig: '_bold',
+    titleBottomOffset: 200,
+    titleGravity: 'north_west',
+    taglineGravity: 'north_west',
+    titleFont: 'Gagalin-Regular.ttf',
+    taglineFont: 'Gagalin-Regular.ttf',
+    taglineTopOffset: 547,
+    taglineFontSize: 24,
+    textColor: '9B5DE5',
+    version: 'v1599074590',
+  });
 
   return (
     <ChakraProvider
@@ -29,17 +50,18 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
         description="This is the new home for my digital garden. Its a fun space for
         me to experiment with stuff and spill my thoughts into MDX
         (Because MDX is cool)"
-        url="https://garden.richardhaines.dev/"
+        url="https://richardhaines-dev-but-fun.vercel.app/"
         ogImage={{
-          url: 'https://garden.richardhaines.dev/',
+          url: 'https://richardhaines-dev-but-fun.vercel.app/',
           title: 'Rich Haines Digital Garden',
-          description: 'A fun space for me to experiment with stuff and spill my thoughts into MDX',
-          image: ``,
-          siteName: 'garden.richardhaines.dev',
+          description:
+            'A fun space for me to experiment with stuff and spill my thoughts into MDX',
+          image: socialImage,
+          siteName: 'https://richardhaines-dev-but-fun.vercel.app/',
         }}
         twitter={{
           handle: '@studio_hungry',
-          site: 'https://garden.richardhaines.dev/',
+          site: 'https://richardhaines-dev-but-fun.vercel.app/',
         }}
       />
       {/* <Navbar /> */}

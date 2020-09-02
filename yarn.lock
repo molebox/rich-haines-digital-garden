@@ -1850,6 +1850,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@jlengstorf/get-share-image@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@jlengstorf/get-share-image/-/get-share-image-0.7.1.tgz#bdef9c633ce6dbf8c300fc82d18befba615a0d5c"
+  integrity sha512-eXATsFDhdRYMqAcrBNW4SpZttAxlA9S/9IAvyUt7UTxxlwNXKo/tqrOxRoOSrA79l25QQ0oDqP/9BcdvvGmYxQ==
+
 "@mdx-js/mdx@^1.6.16":
   version "1.6.16"
   resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-1.6.16.tgz#f01af0140539c1ce043d246259d8becd2153b2bb"
