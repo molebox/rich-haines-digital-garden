@@ -17,7 +17,7 @@ export default function SEO({
         url: ogImage.url || '',
         title: ogImage.title || '',
         description: ogImage.description || '',
-        images: [{ ...ogImage.image }] || [],
+        images: [{ url: ogImage.image }] || [],
         site_name: ogImage.siteName || '',
       }}
       twitter={{
