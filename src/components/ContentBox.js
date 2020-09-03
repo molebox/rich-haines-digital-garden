@@ -1,49 +1,16 @@
 import { Link as NextLink } from 'next/link';
 import { Box, Link, Text, Stack, Flex, Image } from '@chakra-ui/core';
+import { FullGrown, MidGrown, BabyGrown } from './plants';
 
 export default function ContentBox({ blog }) {
-  const full = (
-    <Image
-      position="absolute"
-      objectFit="cover"
-      top="5px"
-      right="0"
-      boxSize="50px"
-      src="url(/full-grown.png)"
-      alt="A fully grown plant"
-    />
-  );
-  const mid = (
-    <Image
-      position="absolute"
-      objectFit="cover"
-      boxSize="40px"
-      top="5px"
-      right="0"
-      src="url(/mid-grown.png)"
-      alt="A mid sized grown plant"
-    />
-  );
-  const baby = (
-    <Image
-      position="absolute"
-      objectFit="cover"
-      boxSize="30px"
-      top="5px"
-      right="0"
-      src="url(/baby-grown.png)"
-      alt="A seedling plant"
-    />
-  );
-
   const growth = () => {
     switch (blog.growth) {
       case 'full':
-        return full;
+        return FullGrown;
       case 'mid':
-        return mid;
+        return MidGrown;
       case 'baby':
-        return baby;
+        return BabyGrown;
     }
   };
 
