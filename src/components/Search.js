@@ -67,10 +67,20 @@ export default function Search({ blogs, handleFilter }) {
       {/* <Flex justify="space-around">
         <TagList tags={TAG_LIST} value={searchTags} onChange={setSearchTags} />
       </Flex> */}
-      <Text fontSize="5xl" textAlign="center" fontFamily="heading" my={5}>
+      <Text
+        fontSize={['3xl', '5xl']}
+        textAlign="center"
+        fontFamily="heading"
+        my={5}
+      >
         A digital garden
       </Text>
-      <Text fontSize="3xl" textAlign="center" fontFamily="heading" mb={2}>
+      <Text
+        fontSize={['xl', '3xl']}
+        textAlign="center"
+        fontFamily="heading"
+        mb={2}
+      >
         Ordered by the latest, these are my writings
       </Text>
       <Input

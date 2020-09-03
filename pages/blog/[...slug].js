@@ -29,18 +29,17 @@ const components = {
       {props.children}
     </Text>
   ),
-  ul: (props) => (
-    <UnorderedList my={2}>
-      <ListItem>{props.children}</ListItem>
-    </UnorderedList>
-  ),
+  ul: (props) => <UnorderedList my={2}>{props.children}</UnorderedList>,
+  li: (props) => <ListItem>{props.children}</ListItem>,
 };
 
-export default function BlogPost({ mdxSource, frontMatter }) {
+export default function BlogPost({ mdxSource, frontMatter, slug }) {
   const content = hydrate(mdxSource, { components });
+  const { title, tags } = frontMatter;
 
+  // TODO: add descriptions to all blog posts and pass them to Chakra
   return (
-    <Chakra>
+    <Chakra title={title} tags={tags} slug={slug[0]}>
       <Box
         bgImage="url(/bg.svg)"
         bgPos="center"
@@ -52,7 +51,13 @@ export default function BlogPost({ mdxSource, frontMatter }) {
         <SemiCircle />
         <ZigZags />
         <Container maxW="1440px">
-          <Text fontSize="5xl" textAlign="center" fontFamily="heading">
+          <Text
+            fontSize={['4xl', '5xl']}
+            borderBottom="solid 3px"
+            mb={5}
+            textAlign="center"
+            fontFamily="heading"
+          >
             {frontMatter.title}
           </Text>
           {content}
@@ -111,6 +116,7 @@ export async function getStaticProps({ params: { slug } }) {
     props: {
       mdxSource: mdx,
       frontMatter: data,
+      slug,
     },
   };
 }

@@ -1,5 +1,5 @@
 import { Flex, Text, Container, Box, Image } from '@chakra-ui/core';
-
+import SEO from '@components/SEO';
 import { Chakra } from '@components/Chakra';
 import NavLink from '@components/nav-link';
 import HomePageProvider from 'src/context/home-page-context';
@@ -18,9 +18,16 @@ import SmallCloud1 from './../src/components/small-cloud-1';
 import SmallCloud2 from './../src/components/small-cloud-2';
 
 export default function Index({ cookies }) {
+  const tags = ['Jamstack', 'Blogging', 'Thoughts'];
+
   return (
     <HomePageProvider>
-      <Chakra cookies={cookies}>
+      <Chakra
+        cookies={cookies}
+        title="My Digital Garden"
+        description="'A fun space for me to experiment with stuff and spill my thoughts into MDX"
+        tags={tags}
+      >
         <Box
           bgImage="url(/bg.svg)"
           bgPos="center"

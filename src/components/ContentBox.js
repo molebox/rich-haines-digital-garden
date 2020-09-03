@@ -1,5 +1,5 @@
 import { Link as NextLink } from 'next/link';
-import { Box, Link, Text, Stack } from '@chakra-ui/core';
+import { Box, Link, Text, Stack, Flex } from '@chakra-ui/core';
 
 export default function ContentBox({ blog }) {
   return (
@@ -12,9 +12,10 @@ export default function ContentBox({ blog }) {
         borderRadius: '5px',
       }}
     >
-      <Box
+      <Flex
         role="group"
-        maxW="1440px"
+        maxW={['300px', '1440px']}
+        w="100%"
         border="solid 3px"
         borderColor="brand.crayola.500"
         borderRadius="5px"
@@ -28,7 +29,7 @@ export default function ContentBox({ blog }) {
             {/* <Text fontWeight={500}> By: {blog.author}</Text> */}
             <Text>{blog.description}</Text>
           </Box>
-          <Stack direction="row" spacing={8}>
+          <Stack direction={['column', 'row']} spacing={2}>
             {blog.tags.map((tag) => (
               <Text fontWeight={500} key={tag}>
                 #{tag}
@@ -36,7 +37,7 @@ export default function ContentBox({ blog }) {
             ))}
           </Stack>
         </Stack>
-      </Box>
+      </Flex>
     </Link>
   );
 }

@@ -32,21 +32,21 @@ export default function Navbar({ showGardenLink }) {
 
   return (
     <Flex
-      h="50vh"
+      h={['50px', '50vh']}
       px={5}
       py={4}
-      direction="column"
+      direction={['row', 'column']}
       justifyContent="space-evenly"
       alignItems="center"
-      position="fixed"
-      right="0"
-      top="200px"
+      position={['static', 'fixed']}
+      right={[null, '0']}
+      top={[0, '200px']}
     >
       <NavLink ml={4} href="/">
         <Text
-          transform="rotate(90deg)"
+          transform={[null, 'rotate(90deg)']}
           fontFamily="heading"
-          fontSize="1xl"
+          fontSize={['sm', '1xl']}
           borderBottom="solid 2px"
           borderColor="brand.crayola.500"
           _hover={{ borderColor: 'brand.crayola.200' }}
@@ -58,9 +58,9 @@ export default function Navbar({ showGardenLink }) {
       {showGardenLink ? (
         <NavLink ml={4} href="/blogs/search">
           <Text
-            transform="rotate(90deg)"
+            transform={[null, 'rotate(90deg)']}
             fontFamily="heading"
-            fontSize="1xl"
+            fontSize={['sm', '1xl']}
             borderBottom="solid 2px"
             borderColor="brand.crayola.500"
             _hover={{ borderColor: 'brand.crayola.200' }}

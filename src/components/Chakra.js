@@ -1,29 +1,21 @@
-import {
-  cookieStorage,
-  ChakraProvider,
-  useColorMode,
-  storageKey,
-  Box,
-  Image,
-} from '@chakra-ui/core';
-import Navbar from '@components/Navbar';
-import SEO from '@components/SEO';
+import { ChakraProvider, useColorMode, storageKey } from '@chakra-ui/core';
 import theme from '../theme';
 import { useEffect } from 'react';
 import getShareImage from '@jlengstorf/get-share-image';
+import SEO from './SEO';
 
-export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
-  useEffect(() => {
-    // let tl = gsap.timeline({repeat: 2, repeatDelay: 1});
-    // gsap.to("#zig-zags", {y : 18}, {y: -18, yoyo: true})
-    // gsap.to("#zag", {x: 500, duration: 3, repeat: 2, yoyo: true});
-  }, []);
-
-  const tags = ['Jamstack', 'Blogging', 'Thoughts']
-
+export function Chakra({
+  children,
+  cookies = '',
+  evaluateThemeLazily,
+  title,
+  tags,
+  description,
+  slug,
+}) {
   const socialImage = getShareImage({
-    title: 'My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX',
-    tagline: tags.map(tag => `• ${tag}`).join(" "),
+    title,
+    tagline: tags.map((tag) => `• ${tag}`).join(' '),
     cloudName: 'richardhaines',
     imagePublicID: 'social-card/social-card-garden',
     textAreaWidth: 1193,
@@ -47,16 +39,13 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
       // storageManager={cookieStorage(cookies)}
     >
       <SEO
-        title="My Digital Garden"
-        description="This is the new home for my digital garden. Its a fun space for
-        me to experiment with stuff and spill my thoughts into MDX
-        (Because MDX is cool)"
-        url="https://richardhaines-dev-but-fun.vercel.app/"
+        title={title}
+        description={description}
+        url={`https://richardhaines-dev-but-fun.vercel.app/blog/${slug}`}
         ogImage={{
           url: socialImage,
-          title: 'My Digital Garden',
-          description:
-            'A fun space for me to experiment with stuff and spill my thoughts into MDX',
+          title,
+          description,
           image: socialImage,
           siteName: 'https://richardhaines-dev-but-fun.vercel.app/',
         }}
@@ -65,7 +54,6 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
           site: 'https://twitter.com/studio_hungry',
         }}
       />
-      {/* <Navbar /> */}
       {/* {evaluateThemeLazily && <LazyThemeEvaluator />} */}
 
       {children}

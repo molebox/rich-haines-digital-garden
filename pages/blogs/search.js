@@ -12,13 +12,17 @@ import Navbar from '@components/Navbar';
 
 export default function SearchPage({ allMdx }) {
   const [filteredBlogs, setFilteredBlogs] = React.useState(allMdx);
-
+  const tags = ['Jamstack', 'Blogging', 'Thoughts'];
   const handleFilter = (data) => {
     setFilteredBlogs(data);
   };
 
   return (
-    <Chakra>
+    <Chakra
+      title="Search The Garden"
+      description="A list of all my posts"
+      tags={tags}
+    >
       <Box
         bgImage="url(/bg.svg)"
         bgPos="center"
