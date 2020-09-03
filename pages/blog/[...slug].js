@@ -31,6 +31,7 @@ const components = {
   ),
   ul: (props) => <UnorderedList my={2}>{props.children}</UnorderedList>,
   li: (props) => <ListItem>{props.children}</ListItem>,
+  p: (props) => <Text my={2}>{props.children}</Text>
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {
