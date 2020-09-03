@@ -23,6 +23,7 @@ export default function ContentBox({ blog }) {
         bgColor: 'brand.crayola.100',
         borderRadius: '5px',
       }}
+      minH="200px"
     >
       <Flex
         role="group"

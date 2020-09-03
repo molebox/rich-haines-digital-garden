@@ -50,9 +50,11 @@ export default function SearchPage({ allMdx }) {
             autoRows="auto"
             m={6}
           >
-            {filteredBlogs?.map((blog) => (
-              <ContentBox key={blog.slug} blog={blog} />
-            ))}
+            {filteredBlogs
+              ?.sort(() => Math.random() - 0.5)
+              .map((blog) => (
+                <ContentBox key={blog.slug} blog={blog} />
+              ))}
           </Grid>
         </Flex>
         <Navbar />
