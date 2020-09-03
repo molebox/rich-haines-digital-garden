@@ -1,4 +1,11 @@
-import { Flex, Text, Container, Box, Image } from '@chakra-ui/core';
+import {
+  Flex,
+  Text,
+  Container,
+  Box,
+  Image,
+  ChakraProvider,
+} from '@chakra-ui/core';
 import SEO from '@components/SEO';
 import { Chakra } from '@components/Chakra';
 import NavLink from '@components/nav-link';
@@ -16,18 +23,68 @@ import BigCloud1 from './../src/components/big-cloud-1';
 import BigCloud2 from './../src/components/big-cloud-2';
 import SmallCloud1 from './../src/components/small-cloud-1';
 import SmallCloud2 from './../src/components/small-cloud-2';
+import theme from './../src/theme/index';
+import getShareImage from '@jlengstorf/get-share-image';
+import { Helmet } from 'react-helmet';
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
 
+  const socialImage = getShareImage({
+    title:
+      'My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX',
+    tagline: tags.map((tag) => `• ${tag}`).join(' '),
+    cloudName: 'richardhaines',
+    imagePublicID: 'social-card/social-card-garden',
+    textAreaWidth: 1193,
+    textLeftOffset: 100,
+    titleFontSize: 60,
+    titleBottomOffset: 210,
+    titleGravity: 'north_west',
+    taglineGravity: 'north_west',
+    titleFont: 'Gagalin-Regular.ttf',
+    taglineFont: 'Gagalin-Regular.ttf',
+    taglineTopOffset: 547,
+    taglineFontSize: 30,
+    textColor: '9B5DE5',
+    version: 'v1599074590',
+  });
+
   return (
     <HomePageProvider>
-      <Chakra
-        cookies={cookies}
-        title="My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX"
-        description=""
-        tags={tags}
-      >
+      <ChakraProvider resetCSS theme={theme}>
+        <Helmet>
+          <title>
+            My Digital Garden. A fun space for me to experiment with stuff and
+            spill my thoughts into MDX
+          </title>
+          <meta name="description" content="" />
+          <meta name="image" content={socialImage} />
+
+          {/* OpenGraph tags */}
+          <meta
+            property="og:url"
+            content={`https://garden.richardhaines.dev`}
+          />
+          <meta property="og:type" content="article" />
+          <meta
+            property="og:title"
+            content="My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX"
+          />
+          <meta property="og:description" content="" />
+          <meta property="og:image" content={socialImage} />
+
+          {/* Twitter Card tags */}
+          <meta
+            name="twitter:title"
+            content="My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX"
+          />
+          <meta name="twitter:description" content="" />
+          <meta name="twitter:image" content={socialImage} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@studio_hungry" />
+          <meta name="twitter:creator" content="@studio_hungry" />
+        </Helmet>
         <Box
           bgImage="url(/bg.svg)"
           bgPos="center"
@@ -97,7 +154,23 @@ export default function Index({ cookies }) {
             </Container>
           </Flex>
         </Box>
-        {/* <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
+      </ChakraProvider>
+      {/* <Chakra
+        cookies={cookies}
+        title="My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX"
+        description=""
+        tags={tags}
+      >
+
+      </Chakra> */}
+    </HomePageProvider>
+  );
+}
+
+export { getServerSideProps } from '@components/Chakra';
+
+{
+  /* <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
           <Container centerContent>
             <Text fontSize="xl" mt={4}>
               This section is going to use ScrollTrigger and a pin to show
@@ -111,10 +184,5 @@ export default function Index({ cookies }) {
               Haven't decided whats going to go here... Exciting!
             </Text>
           </Container>
-        </Box> */}
-      </Chakra>
-    </HomePageProvider>
-  );
+        </Box> */
 }
-
-export { getServerSideProps } from '@components/Chakra';
