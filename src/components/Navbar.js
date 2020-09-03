@@ -40,7 +40,7 @@ export default function Navbar({ showGardenLink }) {
       alignItems="center"
       position={['static', 'fixed']}
       right={[null, '0']}
-      top={[0, '200px']}
+      top={[0, '100px']}
     >
       <NavLink ml={4} href="/">
         <Text

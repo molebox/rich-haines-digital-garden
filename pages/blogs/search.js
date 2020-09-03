@@ -9,6 +9,11 @@ import Search from '@components/Search';
 import { Chakra } from '@components/Chakra';
 import { contentGlob, getBlogFileSlug } from '../blog/[...slug]';
 import Navbar from '@components/Navbar';
+import SemiCircle from 'src/assets/svg/semi-circle';
+import ZigZags from 'src/assets/svg/zig-zags';
+import Triangle from 'src/assets/svg/triangle';
+import FourDotsHorizontal from 'src/assets/svg/four-dots-horizontal';
+import Sun from 'src/assets/svg/sun';
 export default function SearchPage({ allMdx }) {
   const [filteredBlogs, setFilteredBlogs] = React.useState(allMdx);
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
@@ -27,10 +32,15 @@ export default function SearchPage({ allMdx }) {
         bgPos="center"
         bgRepeat="no-repeat"
         bgSize="cover"
-        h="100vh"
+        h="100%"
         // w="100%"
         pb={3}
       >
+        <SemiCircle />
+        <ZigZags />
+        <Triangle />
+        <FourDotsHorizontal />
+        <Sun />
         {/* Content Area + Input + Tag filter */}
         <Flex direction="column" justify="center" maxW="1440px" m="0 auto">
           <Search blogs={allMdx} handleFilter={handleFilter} />
