@@ -97,7 +97,7 @@ export default function Index({ cookies }) {
             </Container>
           </Flex>
         </Box>
-        <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
+        {/* <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
           <Container centerContent>
             <Text fontSize="xl" mt={4}>
               This section is going to use ScrollTrigger and a pin to show
@@ -111,7 +111,7 @@ export default function Index({ cookies }) {
               Haven't decided whats going to go here... Exciting!
             </Text>
           </Container>
-        </Box>
+        </Box> */}
       </Chakra>
     </HomePageProvider>
   );
