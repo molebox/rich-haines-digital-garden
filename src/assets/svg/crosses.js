@@ -1,5 +1,4 @@
 import React from 'react';
-import { gsap } from 'gsap';
 import { Box } from '@chakra-ui/core';
 
 function Crosses() {

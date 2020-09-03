@@ -24,8 +24,8 @@ export default function Index({ cookies }) {
     <HomePageProvider>
       <Chakra
         cookies={cookies}
-        title="My Digital Garden"
-        description="'A fun space for me to experiment with stuff and spill my thoughts into MDX"
+        title="My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX"
+        description=""
         tags={tags}
       >
         <Box

@@ -41,13 +41,13 @@ export function Chakra({
       <SEO
         title={title}
         description={description}
-        url={`https://richardhaines-dev-but-fun.vercel.app/blog/${slug}`}
+        url={`https://garden.richardhaines.dev/blog/${slug}`}
         ogImage={{
           url: socialImage,
           title,
           description,
           image: socialImage,
-          siteName: 'https://richardhaines-dev-but-fun.vercel.app/',
+          siteName: 'https://garden.richardhaines.dev/',
         }}
         twitter={{
           handle: '@studio_hungry',
