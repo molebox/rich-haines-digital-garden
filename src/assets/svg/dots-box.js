@@ -12,7 +12,7 @@ function DotsBox() {
       xmlns="http://www.w3.org/2000/svg"
       display={['none', 'block']}
       position="absolute"
-      left="10%"
+      left="20%"
       bottom="10%"
     >
       <g id="dots-box">

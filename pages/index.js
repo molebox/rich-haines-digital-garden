@@ -16,6 +16,8 @@ import BigCloud1 from './../src/components/big-cloud-1';
 import BigCloud2 from './../src/components/big-cloud-2';
 import SmallCloud1 from './../src/components/small-cloud-1';
 import SmallCloud2 from './../src/components/small-cloud-2';
+import Moon from '@components/moon';
+import DotsBox from 'src/assets/svg/dots-box';
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
@@ -39,6 +41,8 @@ export default function Index({ cookies }) {
           overflowX="hidden"
         >
           <Sun />
+          <Moon/>
+          <DotsBox/>
           <FourDotsHorizontal />
           <FourDotsDiagonal />
           <Triangle />
