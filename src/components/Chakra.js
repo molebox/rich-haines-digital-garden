@@ -45,14 +45,14 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
       // storageManager={cookieStorage(cookies)}
     >
       <SEO
-        title="Rich Haines Digital Garden"
+        title="My Digital Garden"
         description="This is the new home for my digital garden. Its a fun space for
         me to experiment with stuff and spill my thoughts into MDX
         (Because MDX is cool)"
         url="https://richardhaines-dev-but-fun.vercel.app/"
         ogImage={{
-          url: 'https://richardhaines-dev-but-fun.vercel.app/',
-          title: 'Rich Haines Digital Garden',
+          url: socialImage,
+          title: 'My Digital Garden',
           description:
             'A fun space for me to experiment with stuff and spill my thoughts into MDX',
           image: socialImage,
