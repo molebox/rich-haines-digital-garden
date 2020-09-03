@@ -19,21 +19,23 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
     // gsap.to("#zag", {x: 500, duration: 3, repeat: 2, yoyo: true});
   }, []);
 
+  const tags = ['Jamstack', 'Blogging', 'Thoughts']
+
   const socialImage = getShareImage({
-    title: 'Rich Haines Digital Garden',
-    tagline: 'A fun space for me to experiment with stuff and spill my thoughts into MDX',
+    title: 'My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX',
+    tagline: tags.map(tag => `• ${tag}`).join(" "),
     cloudName: 'richardhaines',
     imagePublicID: 'social-card/social-card-garden',
     textAreaWidth: 1193,
     textLeftOffset: 100,
-    titleFontSize: 70,
-    titleBottomOffset: 200,
+    titleFontSize: 60,
+    titleBottomOffset: 210,
     titleGravity: 'north_west',
     taglineGravity: 'north_west',
     titleFont: 'Gagalin-Regular.ttf',
     taglineFont: 'Gagalin-Regular.ttf',
     taglineTopOffset: 547,
-    taglineFontSize: 20,
+    taglineFontSize: 30,
     textColor: '9B5DE5',
     version: 'v1599074590',
   });
