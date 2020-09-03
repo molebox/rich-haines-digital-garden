@@ -41,8 +41,8 @@ export default function Index({ cookies }) {
           overflowX="hidden"
         >
           <Sun />
-          <Moon/>
-          <DotsBox/>
+          <Moon />
+          <DotsBox />
           <FourDotsHorizontal />
           <FourDotsDiagonal />
           <Triangle />
