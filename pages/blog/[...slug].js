@@ -7,7 +7,7 @@ import glob from 'fast-glob';
 
 import Code from '@components/Code';
 import { Chakra } from '@components/Chakra';
-import { Box, Container, Text, UnorderedList, ListItem } from '@chakra-ui/core';
+import { Box, Container, Text, UnorderedList, ListItem, Link } from '@chakra-ui/core';
 import SemiCircle from 'src/assets/svg/semi-circle';
 import ZigZags from './../../src/assets/svg/zig-zags';
 import Navbar from '@components/Navbar';
@@ -32,6 +32,7 @@ const components = {
   ul: (props) => <UnorderedList my={2}>{props.children}</UnorderedList>,
   li: (props) => <ListItem>{props.children}</ListItem>,
   p: (props) => <Text my={2}>{props.children}</Text>,
+  a: (props) => <Link isExternal href={props.href} borderBottom="solid 2px" borderColor="brand.crayola.200">{props.children}</Link>
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {
