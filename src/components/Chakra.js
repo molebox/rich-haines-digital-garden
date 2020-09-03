@@ -53,7 +53,7 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
         (Because MDX is cool)"
         url="https://richardhaines-dev-but-fun.vercel.app/"
         ogImage={{
-          url: socialImage,
+          url: 'https://richardhaines-dev-but-fun.vercel.app/',
           title: 'My Digital Garden',
           description:
             'A fun space for me to experiment with stuff and spill my thoughts into MDX',
@@ -62,7 +62,7 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
         }}
         twitter={{
           handle: '@studio_hungry',
-          site: 'https://richardhaines-dev-but-fun.vercel.app/',
+          site: 'https://twitter.com/studio_hungry',
         }}
       />
       {/* <Navbar /> */}
