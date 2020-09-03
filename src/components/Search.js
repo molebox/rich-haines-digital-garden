@@ -81,7 +81,7 @@ export default function Search({ blogs, handleFilter }) {
         fontFamily="heading"
         mb={2}
       >
-        In no particular order, these are my writings
+        In no particular order, these are my writings, ideas and thoughts
       </Text>
       <Input
         placeholder="Enter a search term"

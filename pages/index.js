@@ -27,6 +27,7 @@ export default function Index({ cookies }) {
         title="My Digital Garden. A fun space for me to experiment with stuff and spill my thoughts into MDX"
         description="A fun space for me to experiment with stuff and spill my thoughts into MDX"
         tags={tags}
+        isHomePage
       >
         <Box
           bgImage="url(/bg.svg)"
