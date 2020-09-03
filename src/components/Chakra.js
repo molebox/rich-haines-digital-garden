@@ -53,7 +53,7 @@ export function Chakra({ children, cookies = '', evaluateThemeLazily }) {
         (Because MDX is cool)"
         url="https://richardhaines-dev-but-fun.vercel.app/"
         ogImage={{
-          url: 'https://richardhaines-dev-but-fun.vercel.app/',
+          url: socialImage,
           title: 'My Digital Garden',
           description:
             'A fun space for me to experiment with stuff and spill my thoughts into MDX',
