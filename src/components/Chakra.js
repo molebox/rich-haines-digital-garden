@@ -12,7 +12,7 @@ export function Chakra({
   tags,
   description,
   slug,
-  isHomePage
+  isHomePage,
 }) {
   const socialImage = getShareImage({
     title,
@@ -42,7 +42,11 @@ export function Chakra({
       <SEO
         title={title}
         description={description}
-        url={isHomePage ? 'https://garden.richardhaines.dev' : `https://garden.richardhaines.dev/blog/${slug}`}
+        url={
+          isHomePage
+            ? 'https://garden.richardhaines.dev'
+            : `https://garden.richardhaines.dev/blog/${slug}`
+        }
         ogImage={{
           url: socialImage,
           title,

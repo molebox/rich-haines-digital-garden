@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Text, Image } from '@chakra-ui/core';
+import { Box, Flex, Stack, Text, Image, Grid } from '@chakra-ui/core';
 
 import glob from 'fast-glob';
 import fs from 'fs';
@@ -28,19 +28,23 @@ export default function SearchPage({ allMdx }) {
         bgRepeat="no-repeat"
         bgSize="cover"
         h="100vh"
-        w="100%"
-        overflowX="hidden"
+        // w="100%"
         pb={3}
       >
         {/* Content Area + Input + Tag filter */}
-        <Stack spacing={[4, 8, 12]} justify="center" alignItems="center">
+        <Flex direction="column" justify="center" maxW="1440px" m="0 auto">
           <Search blogs={allMdx} handleFilter={handleFilter} />
-          <Stack spacing={[2, 6, 12]}>
+          <Grid
+            templateColumns="repeat(auto-fill, minmax(auto, 450px))"
+            gap={5}
+            autoRows="auto"
+            m={6}
+          >
             {filteredBlogs?.map((blog) => (
               <ContentBox key={blog.slug} blog={blog} />
             ))}
-          </Stack>
-        </Stack>
+          </Grid>
+        </Flex>
         <Navbar />
       </Box>
     </Chakra>

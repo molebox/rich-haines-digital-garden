@@ -58,12 +58,7 @@ export default function Search({ blogs, handleFilter }) {
   // };
 
   return (
-    <Stack
-      direction="column"
-      w={['100%', '75%', '50%']}
-      align="center"
-      spacing={[6, 8, 10]}
-    >
+    <Stack direction="column" align="center" spacing={[6, 8, 10]}>
       {/* <Flex justify="space-around">
         <TagList tags={TAG_LIST} value={searchTags} onChange={setSearchTags} />
       </Flex> */}
