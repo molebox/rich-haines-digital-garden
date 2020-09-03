@@ -3,7 +3,6 @@ import theme from '../theme';
 import { useEffect } from 'react';
 import getShareImage from '@jlengstorf/get-share-image';
 import SEO from './SEO';
-import { Helmet } from 'react-helmet';
 
 export function Chakra({
   children,
@@ -39,45 +38,22 @@ export function Chakra({
       theme={theme}
       // storageManager={cookieStorage(cookies)}
     >
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="image" content={socialImage} />
-
-        {/* OpenGraph tags */}
-        <meta
-          property="og:url"
-          content={`https://garden.richardhaines.dev/blog/${slug}`}
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={socialImage} />
-
-        {/* Twitter Card tags */}
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={socialImage} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@studio_hungry" />
-        <meta name="twitter:creator" content="@studio_hungry" />
-      </Helmet>
-      {/* <SEO
+      <SEO
         title={title}
         description={description}
         url={`https://garden.richardhaines.dev/blog/${slug}`}
         ogImage={{
-          url: socialImage,
+          url: `https://garden.richardhaines.dev/blog/${slug}`,
           title,
           description,
           image: socialImage,
-          siteName: 'https://garden.richardhaines.dev/',
+          siteName: 'garden.richardhaines.dev',
         }}
         twitter={{
           handle: '@studio_hungry',
           site: 'https://twitter.com/studio_hungry',
         }}
-      /> */}
+      />
       {/* {evaluateThemeLazily && <LazyThemeEvaluator />} */}
 
       {children}
