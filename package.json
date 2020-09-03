@@ -9,7 +9,6 @@
     "build": "next build",
     "dev": "next",
     "start": "next start",
-    "export": "next export",
     "format": "yarn format:index && yarn format:pages && yarn format:src",
     "format:index": "prettier --write \"*.{js,json,md}\"",
     "format:pages": "prettier --write \"pages/**/*.js\"",
