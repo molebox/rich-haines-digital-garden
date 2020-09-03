@@ -35,11 +35,11 @@ const components = {
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {
   const content = hydrate(mdxSource, { components });
-  const { title, tags } = frontMatter;
+  const { title, tags, description } = frontMatter;
 
   // TODO: add descriptions to all blog posts and pass them to Chakra
   return (
-    <Chakra title={title} tags={tags} slug={slug[0]}>
+    <Chakra title={title} tags={tags} slug={slug[0]} description={description}>
       <Box
         bgImage="url(/bg.svg)"
         bgPos="center"
