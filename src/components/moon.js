@@ -5,16 +5,14 @@ function Moon() {
   return (
     <Image
       id="moon-with-clouds"
-      w={100}
+      w={[50, 100]}
       fit="cover"
       src="moon-with-clouds.png"
-      display={['none', 'block']}
-      style={{
-        position: 'absolute',
-        top: '40px',
-        right: '30%',
-        zIndex: 10,
-      }}
+      // display={['none', 'block']}
+      position="absolute"
+      top={['20px', '40px']}
+      right={['70%', '30%']}
+      zIndex={10}
       alt="A moon covered with clouds"
     />
   );

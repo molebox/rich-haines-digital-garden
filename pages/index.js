@@ -1,4 +1,4 @@
-import { Flex, Text, Container, Box, Image } from '@chakra-ui/core';
+import { Flex, Text, Container, Box, Image, Link } from '@chakra-ui/core';
 import SEO from '@components/SEO';
 import { Chakra } from '@components/Chakra';
 import NavLink from '@components/nav-link';
@@ -18,6 +18,9 @@ import SmallCloud1 from './../src/components/small-cloud-1';
 import SmallCloud2 from './../src/components/small-cloud-2';
 import Moon from '@components/moon';
 import DotsBox from 'src/assets/svg/dots-box';
+import { RoughNotation } from 'react-rough-notation';
+
+const DynamicYear = new Date().getFullYear();
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
@@ -99,6 +102,33 @@ export default function Index({ cookies }) {
                 (Because MDX is cool).
               </Text>
               <NavLink href="/blogs/search">canvass Garden</NavLink>
+
+              <Flex
+                direction="row"
+                mt={6}
+                align="center"
+                w="300px"
+                justify="space-evenly"
+              >
+                <Text>Built with </Text>
+                <Link isExternal href="https://nextjs.org/">
+                  <RoughNotation type="highlight" color="#00BBF9" show={true}>
+                    NextJs
+                  </RoughNotation>
+                </Link>
+                <Link isExternal href="https://mdxjs.com/">
+                  <RoughNotation type="highlight" color="#F15BB5" show={true}>
+                    MDX
+                  </RoughNotation>
+                </Link>
+                <Text>and </Text>
+                <Link isExternal href="https://greensock.com/gsap/">
+                  <RoughNotation type="highlight" color="#9B5DE5" show={true}>
+                    GSAP
+                  </RoughNotation>
+                </Link>
+              </Flex>
+              <Text mt={3}>Copyright &copy; {DynamicYear} Rich Haines</Text>
             </Container>
           </Flex>
         </Box>

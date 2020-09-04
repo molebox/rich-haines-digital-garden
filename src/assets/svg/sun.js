@@ -5,12 +5,12 @@ function Sun() {
   return (
     <Box
       as="svg"
-      width="228px"
-      height="464px"
+      width={['100px', '228px']}
+      height={['200px', '464px']}
       viewBox="0 0 228 464"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      display={['none', 'block']}
+      // display={['none', 'block']}
       position="absolute"
       right="0"
       top="400px"

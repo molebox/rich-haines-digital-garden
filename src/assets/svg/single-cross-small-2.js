@@ -19,10 +19,10 @@ function SingleCrossSmall2() {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      display={['none', 'block']}
+      // display={['none', 'block']}
       position="absolute"
-      left="54.86%"
-      top="120px"
+      left={['60%', '54.86%']}
+      top={['25px', '120px']}
       zIndex={11}
     >
       <g id="single-cross-small-2">
