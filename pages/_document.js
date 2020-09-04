@@ -5,7 +5,9 @@ class MyDocument extends Document {
   render() {
     return (
       <html lang="en">
-        <Head></Head>
+        <Head>
+          <script src="https://cdn.usefathom.com/script.js" site="BKAODLAL" defer></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
