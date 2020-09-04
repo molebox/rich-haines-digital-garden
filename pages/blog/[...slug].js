@@ -61,6 +61,7 @@ export default function BlogPost({ mdxSource, frontMatter, slug }) {
         bgRepeat="no-repeat"
         bgSize="cover"
         h="100%"
+        minH="100vh"
         p={5}
       >
         <SemiCircle />
