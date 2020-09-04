@@ -1,8 +1,10 @@
 import { Link as NextLink } from 'next/link';
 import { Box, Link, Text, Stack, Flex, Image } from '@chakra-ui/core';
 import { FullGrown, MidGrown, BabyGrown } from './plants';
+import { RoughNotation } from 'react-rough-notation';
 
 export default function ContentBox({ blog }) {
+  const [showNotation, setShowNotation] = React.useState(false);
   const growth = () => {
     switch (blog.growth) {
       case 'full':
@@ -24,6 +26,8 @@ export default function ContentBox({ blog }) {
         borderRadius: '5px',
       }}
       h="230px"
+      onMouseEnter={() => setShowNotation(true)}
+      onMouseLeave={() => setShowNotation(false)}
     >
       <Flex
         role="group"
@@ -47,9 +51,15 @@ export default function ContentBox({ blog }) {
           </Box>
           <Stack direction={['column', 'row']} spacing={2}>
             {blog.tags.map((tag) => (
-              <Text fontWeight={500} key={tag}>
-                #{tag}
-              </Text>
+              <RoughNotation
+                type="highlight"
+                color="#FEE440"
+                show={showNotation}
+              >
+                <Text fontWeight={500} key={tag}>
+                  #{tag}
+                </Text>
+              </RoughNotation>
             ))}
           </Stack>
         </Stack>

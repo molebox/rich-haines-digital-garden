@@ -18,6 +18,7 @@ import {
 import SemiCircle from 'src/assets/svg/semi-circle';
 import ZigZags from './../../src/assets/svg/zig-zags';
 import Navbar from '@components/Navbar';
+import { RoughNotation } from 'react-rough-notation';
 
 const components = {
   code: Code,
@@ -40,13 +41,10 @@ const components = {
   li: (props) => <ListItem>{props.children}</ListItem>,
   p: (props) => <Text my={2}>{props.children}</Text>,
   a: (props) => (
-    <Link
-      isExternal
-      href={props.href}
-      borderBottom="solid 2px"
-      borderColor="brand.crayola.200"
-    >
-      {props.children}
+    <Link isExternal href={props.href}>
+      <RoughNotation type="highlight" color="#F056B3" show={true}>
+        {props.children}
+      </RoughNotation>
     </Link>
   ),
 };
