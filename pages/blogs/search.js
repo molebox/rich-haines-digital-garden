@@ -21,6 +21,10 @@ export default function SearchPage({ allMdx }) {
     setFilteredBlogs(data);
   };
 
+  React.useEffect(() => {
+    setFilteredBlogs([...allMdx.sort(() => Math.random() - 0.5)]);
+  }, []);
+
   return (
     <Chakra
       title="Search The Garden"
@@ -47,14 +51,12 @@ export default function SearchPage({ allMdx }) {
           <Grid
             templateColumns="repeat(auto-fill, minmax(auto, 450px))"
             gap={5}
-            autoRows="auto"
+            autoRows="230px"
             m={6}
           >
-            {filteredBlogs
-              ?.sort(() => Math.random() - 0.5)
-              .map((blog) => (
-                <ContentBox key={blog.slug} blog={blog} />
-              ))}
+            {filteredBlogs?.map((blog) => (
+              <ContentBox key={blog.slug} blog={blog} />
+            ))}
           </Grid>
         </Flex>
         <Navbar />

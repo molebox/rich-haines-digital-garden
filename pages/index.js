@@ -55,12 +55,12 @@ export default function Index({ cookies }) {
           <SingleCrossSmall2 />
           {/* <ZigZags /> */}
           <Image
-            boxSize={100}
+            boxSize={[60, 100]}
             fit="cover"
             src="sponge-bob-pointing.png"
-            display={['none', 'block']}
+            // display={['none', 'block']}
             position="absolute"
-            top="140px"
+            top={['50px', '140px']}
             right="45.5%"
             zIndex={11}
             alt="SpongeBob Square Pants Pointing"

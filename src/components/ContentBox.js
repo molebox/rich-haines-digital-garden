@@ -23,7 +23,7 @@ export default function ContentBox({ blog }) {
         bgColor: 'brand.crayola.100',
         borderRadius: '5px',
       }}
-      minH="200px"
+      h="230px"
     >
       <Flex
         role="group"
@@ -34,6 +34,7 @@ export default function ContentBox({ blog }) {
         borderRadius="5px"
         p={8}
         position="relative"
+        h="230px"
       >
         {growth()}
         <Stack>
