@@ -79,7 +79,7 @@ export default function Search({ blogs, handleFilter }) {
         In no particular order, these are my writings, ideas and thoughts
       </Text>
       <Input
-        placeholder="Enter a search term"
+        placeholder="Search a keyword"
         p={2}
         border="solid 2px"
         borderColor="brand.amethyst.500"

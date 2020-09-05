@@ -1,5 +1,5 @@
-import { Flex, Text, Container, Box, Image, Link } from '@chakra-ui/core';
-import SEO from '@components/SEO';
+import { Flex, Text, Container, Box, Image, Link, Grid } from '@chakra-ui/core';
+import { gsap } from 'gsap';
 import { Chakra } from '@components/Chakra';
 import NavLink from '@components/nav-link';
 import HomePageProvider from 'src/context/home-page-context';
@@ -18,12 +18,24 @@ import SmallCloud1 from './../src/components/small-cloud-1';
 import SmallCloud2 from './../src/components/small-cloud-2';
 import Moon from '@components/moon';
 import DotsBox from 'src/assets/svg/dots-box';
-import { RoughNotation } from 'react-rough-notation';
-
-const DynamicYear = new Date().getFullYear();
+import Footer from './../src/components/footer';
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
+
+  React.useEffect(() => {
+    if (typeof window !== undefined) {
+      let TL = gsap.timeline();
+      gsap.from('#name', { x: -500, duration: 1.2, ease: 'back(4)' });
+      gsap.from('#about-1', { x: 500, duration: 1.5, ease: 'back(3)' });
+      gsap.from('#about-2', { x: -500, duration: 1.8, ease: 'back(5)' });
+      gsap.fromTo(
+        '#blog-link',
+        { opacity: 0 },
+        { opacity: 1, delay: 1, duration: 2 },
+      );
+    }
+  }, []);
 
   return (
     <HomePageProvider>
@@ -57,7 +69,7 @@ export default function Index({ cookies }) {
           <SingleCrossSmall1 />
           <SingleCrossSmall2 />
           {/* <ZigZags /> */}
-          <Image
+          {/* <Image
             boxSize={[60, 100]}
             fit="cover"
             src="sponge-bob-pointing.png"
@@ -67,17 +79,32 @@ export default function Index({ cookies }) {
             right="45.5%"
             zIndex={11}
             alt="SpongeBob Square Pants Pointing"
-          />
+          /> */}
           <BigCloud1 />
           <BigCloud2 />
           <SmallCloud1 />
           <SmallCloud2 />
-          <Flex justify="center" align="center" h="100%">
-            <Container direction="column" maxW="1000px" centerContent>
+          <Grid
+            templateRows="1fr 150px"
+            templateAreas={`
+            'main main main'
+            '.footer .'
+          `}
+            h="100vh"
+          >
+            <Container
+              gridArea="main"
+              direction="column"
+              justifySelf="center"
+              alignSelf="center"
+              maxW="1000px"
+              centerContent
+            >
               <Text
                 color="brand.text"
                 fontSize={['xl', '6xl']}
                 fontFamily="heading"
+                id="name"
               >
                 hello, im rich haines
               </Text>
@@ -87,6 +114,7 @@ export default function Index({ cookies }) {
                 fontFamily="heading"
                 textAlign="center"
                 my={3}
+                id="about-1"
               >
                 A software developer who specializes in Jamstack development
               </Text>
@@ -96,41 +124,16 @@ export default function Index({ cookies }) {
                 fontFamily="heading"
                 textAlign="center"
                 my={3}
+                id="about-2"
               >
                 This is the new home for my digital garden. Its a fun space for
                 me to experiment with stuff and spill my thoughts into MDX
                 (Because MDX is cool).
               </Text>
-              <NavLink href="/blogs/search">canvass Garden</NavLink>
-
-              <Flex
-                direction="row"
-                mt={6}
-                align="center"
-                w="300px"
-                justify="space-evenly"
-              >
-                <Text>Built with </Text>
-                <Link isExternal href="https://nextjs.org/">
-                  <RoughNotation type="highlight" color="#00BBF9" show={true}>
-                    NextJs
-                  </RoughNotation>
-                </Link>
-                <Link isExternal href="https://mdxjs.com/">
-                  <RoughNotation type="highlight" color="#F15BB5" show={true}>
-                    MDX
-                  </RoughNotation>
-                </Link>
-                <Text>and </Text>
-                <Link isExternal href="https://greensock.com/gsap/">
-                  <RoughNotation type="highlight" color="#9B5DE5" show={true}>
-                    GSAP
-                  </RoughNotation>
-                </Link>
-              </Flex>
-              <Text mt={3}>Copyright &copy; {DynamicYear} Rich Haines</Text>
+              <NavLink href="/blogs/search">start reading</NavLink>
             </Container>
-          </Flex>
+            <Footer />
+          </Grid>
         </Box>
         {/* <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
           <Container centerContent>

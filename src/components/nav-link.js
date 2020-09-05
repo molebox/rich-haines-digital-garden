@@ -7,14 +7,15 @@ function NavLink({ children, ...props }) {
     <Link
       color="brand.text"
       textTransform="uppercase"
-      fontSize="2xl"
+      fontSize={['md', '2xl']}
       borderBottom="solid 2px"
       borderColor="brand.crayola.500"
-      _hover={{ borderColor: 'brand.crayola.200' }}
+      _hover={{ borderColor: 'brand.amethyst.500' }}
       p={2}
       as={NextLink}
       mt={6}
       {...props}
+      id="blog-link"
     >
       {children}
     </Link>

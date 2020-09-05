@@ -6,7 +6,11 @@ class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <script src="https://cdn.usefathom.com/script.js" site="BKAODLAL" defer></script>
+          <script
+            src="https://cdn.usefathom.com/script.js"
+            site="BKAODLAL"
+            defer
+          ></script>
         </Head>
         <body>
           <Main />
