@@ -3,9 +3,10 @@ import { Image } from '@chakra-ui/core';
 import { gsap } from 'gsap';
 
 function BigCloud1() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
   React.useEffect(() => {
+    const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 2 });
     if (typeof window !== 'undefined') {
-      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 2 });
       TL.from('#big-cloud-1', {
         y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
         ease: 'back(5)',
@@ -16,13 +17,9 @@ function BigCloud1() {
         duration: gsap.utils.random(40, 75),
       });
     }
-    // let tl = gsap.timeline();
-    // tl.fromTo(
-    //   '#big-cloud-1',
-    //   { y: -500 },
-    //   { y: 0, delay: 0.8, duration: 1, ease: 'back(5)' },
-    // );
-    // tl.to('#big-cloud-1', { x: '95%', duration: 30, repeat: -1 });
+    if (isLoaded) {
+      TL.play();
+    }
   }, []);
 
   return (
@@ -40,6 +37,7 @@ function BigCloud1() {
         zIndex: 10,
       }}
       alt="A big cloud"
+      onLoad={() => setIsLoaded(true)}
     />
   );
 }

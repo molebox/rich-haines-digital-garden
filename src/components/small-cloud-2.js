@@ -3,9 +3,10 @@ import { Image } from '@chakra-ui/core';
 import { gsap } from 'gsap';
 // import {MotionPathPlugin} from 'gsap/MotionPathPlugin';
 function SmallCloud2() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
   React.useEffect(() => {
+    const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 5 });
     if (typeof window !== 'undefined') {
-      const TL = gsap.timeline({ repeat: -1, yoyo: true, delay: 5 });
       TL.from('#small-cloud-2', {
         y: -500, // or use window.innerWidth || window.innerHeight. They are the viewport after all :wink:
         ease: 'back(5)',
@@ -16,13 +17,9 @@ function SmallCloud2() {
         duration: gsap.utils.random(30, 60),
       });
     }
-    // let tl = gsap.timeline();
-    // tl.fromTo(
-    //   '#small-cloud-2',
-    //   { y: -500 },
-    //   { y: 0, delay: 1, duration: 1, ease: 'back(1)' },
-    // );
-    // tl.to('#small-cloud-2', { x: 500, duration: 40, repeat: -1 });
+    if (isLoaded) {
+      TL.play();
+    }
   }, []);
 
   return (
@@ -40,6 +37,7 @@ function SmallCloud2() {
         zIndex: 10,
       }}
       alt="A small cloud"
+      onLoad={() => setIsLoaded(true)}
     />
   );
 }
