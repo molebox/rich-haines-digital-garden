@@ -2,6 +2,7 @@ import React from 'react';
 import { Image } from '@chakra-ui/core';
 
 function Moon() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
   return (
     <Image
       id="moon-with-clouds"
@@ -14,6 +15,9 @@ function Moon() {
       right={['70%', '30%']}
       zIndex={10}
       alt="A moon covered with clouds"
+      opacity={isLoaded ? 1 : 0}
+      onLoad={() => setIsLoaded(true)}
+
     />
   );
 }
