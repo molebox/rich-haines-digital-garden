@@ -1,8 +1,19 @@
 import React from 'react';
 import { Image } from '@chakra-ui/core';
+import {gsap} from 'gsap';
 
 function Moon() {
   const [isLoaded, setIsLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== undefined) {
+      if (isLoaded) {
+        gsap.fromTo('#moon-with-clouds', {scale: 0.1},  {scale: 1, ease: 'elastic(2)'})
+      }
+      
+    }
+  }, []);
+
   return (
     <Image
       id="moon-with-clouds"
