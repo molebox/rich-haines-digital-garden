@@ -8,7 +8,7 @@ function Moon() {
   React.useEffect(() => {
     if (typeof window !== undefined) {
       if (isLoaded) {
-        gsap.fromTo('#moon-with-clouds', {scale: 0.1},  {scale: 1, ease: 'elastic(2)'})
+        gsap.fromTo('#moon-with-clouds', {scale: 0.1},  {scale: 1.2, ease: 'elastic(1)'})
       }
       
     }
