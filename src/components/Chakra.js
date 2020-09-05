@@ -21,7 +21,7 @@ export function Chakra({
     imagePublicID: 'social-card/social-card-garden',
     textAreaWidth: 1193,
     textLeftOffset: 100,
-    titleFontSize: 60,
+    titleFontSize: 75,
     titleBottomOffset: 210,
     titleGravity: 'north_west',
     taglineGravity: 'north_west',
