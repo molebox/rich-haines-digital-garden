@@ -52,6 +52,7 @@ export default function ContentBox({ blog }) {
           <Stack direction={['column', 'row']} spacing={2}>
             {blog.tags.map((tag) => (
               <RoughNotation
+                key={tag}
                 type="highlight"
                 color="#FEE440"
                 show={showNotation}

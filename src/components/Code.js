@@ -9,7 +9,6 @@ import ReactSVG from './../assets/svg/react-svg';
 
 export default function Code({ children, className }) {
   const language = className.replace(/language-/, '');
-  console.log({ language });
 
   const showLanguage = () => {
     switch (language) {

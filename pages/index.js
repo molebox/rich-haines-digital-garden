@@ -26,14 +26,10 @@ export default function Index({ cookies }) {
   React.useEffect(() => {
     if (typeof window !== undefined) {
       let TL = gsap.timeline();
-      gsap.from('#name', { x: -500, duration: 1.2, ease: 'back(4)' });
-      gsap.from('#about-1', { x: 500, duration: 1.5, ease: 'back(3)' });
-      gsap.from('#about-2', { x: -500, duration: 1.8, ease: 'back(5)' });
-      gsap.fromTo(
-        '#blog-link',
-        { opacity: 0 },
-        { opacity: 1, delay: 1, duration: 2 },
-      );
+      TL.fromTo('#name', { opacity: 0 }, { opacity: 1, duration: 1 });
+      TL.fromTo('#about-1', { opacity: 0 }, { opacity: 1, duration: 1 });
+      TL.fromTo('#about-2', { opacity: 0 }, { opacity: 1, duration: 1 });
+      TL.fromTo('#blog-link', { opacity: 0 }, { opacity: 1, duration: 1 });
     }
   }, []);
 

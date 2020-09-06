@@ -42,7 +42,7 @@ const components = {
   p: (props) => <Text my={2}>{props.children}</Text>,
   a: (props) => (
     <Link isExternal href={props.href}>
-      <RoughNotation type="highlight" color="#F056B3" show={true}>
+      <RoughNotation multiline type="highlight" color="#F056B3" show={true}>
         {props.children}
       </RoughNotation>
     </Link>
