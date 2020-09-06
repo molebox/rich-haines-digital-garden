@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from '@chakra-ui/core';
-import {gsap} from 'gsap';
+import { gsap } from 'gsap';
 
 function Moon() {
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -8,9 +8,12 @@ function Moon() {
   React.useEffect(() => {
     if (typeof window !== undefined) {
       if (isLoaded) {
-        gsap.fromTo('#moon-with-clouds', {scale: 0.1},  {scale: 1.2, ease: 'elastic(1)'})
+        gsap.fromTo(
+          '#moon-with-clouds',
+          { scale: 0.1 },
+          { scale: 1.2, ease: 'elastic(1)' },
+        );
       }
-      
     }
   }, []);
 
@@ -28,7 +31,6 @@ function Moon() {
       alt="A moon covered with clouds"
       opacity={isLoaded ? 1 : 0}
       onLoad={() => setIsLoaded(true)}
-
     />
   );
 }
