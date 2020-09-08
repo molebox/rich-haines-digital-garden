@@ -20,9 +20,11 @@ export default function ContentBox({ blog }) {
     <Link
       as={NextLink}
       href={`/blog/${blog.slug}`}
+      bgColor="brand.crayola.100"
+      boxShadow="-1px 8px 19px -2px hsl(324, 83.7%, 52%)"
       _hover={{
         textDecor: 'none',
-        bgColor: 'brand.crayola.100',
+        bgColor: 'brand.crayola.300',
         borderRadius: '5px',
       }}
       h="230px"
