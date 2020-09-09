@@ -21,9 +21,9 @@ export default function SearchPage({ allMdx }) {
     setFilteredBlogs(data);
   };
 
-  React.useEffect(() => {
-    setFilteredBlogs([...allMdx.sort(() => Math.random() - 0.5)]);
-  }, []);
+  // React.useEffect(() => {
+  //   setFilteredBlogs([...allMdx.sort(() => Math.random() - 0.5)]);
+  // }, []);
 
   return (
     <Chakra
@@ -54,9 +54,12 @@ export default function SearchPage({ allMdx }) {
             autoRows="230px"
             m={6}
           >
-            {filteredBlogs?.map((blog) => (
-              <ContentBox key={blog.slug} blog={blog} />
-            ))}
+            {filteredBlogs?.map((blog) => {
+              console.log({ blog });
+              return (
+                blog.published && <ContentBox key={blog.slug} blog={blog} />
+              );
+            })}
           </Grid>
         </Flex>
         <Navbar />
