@@ -27,20 +27,21 @@ export default function ContentBox({ blog }) {
         bgColor: 'brand.crayola.300',
         borderRadius: '5px',
       }}
-      h="230px"
+      h="250px"
+      w="100%"
       onMouseEnter={() => setShowNotation(true)}
       onMouseLeave={() => setShowNotation(false)}
     >
       <Flex
         role="group"
-        maxW={['300px', '1440px']}
+        maxW={['450px', '1440px']}
         w="100%"
         border="solid 3px"
         borderColor="brand.crayola.500"
         borderRadius="5px"
         p={8}
         position="relative"
-        h="230px"
+        h="250px"
       >
         {growth()}
         <Stack>
@@ -49,7 +50,7 @@ export default function ContentBox({ blog }) {
               {blog.title}
             </Text>
             {/* <Text fontWeight={500}> By: {blog.author}</Text> */}
-            <Text>{blog.description}</Text>
+            <Text mt={2}>{blog.description}</Text>
           </Box>
           <Stack direction={['column', 'row']} spacing={2}>
             {blog.tags.map((tag) => (

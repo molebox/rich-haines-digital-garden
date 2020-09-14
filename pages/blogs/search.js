@@ -51,7 +51,7 @@ export default function SearchPage({ allMdx }) {
           <Grid
             templateColumns="repeat(auto-fill, minmax(auto, 450px))"
             gap={5}
-            autoRows="230px"
+            autoRows="250px"
             m={6}
           >
             {filteredBlogs?.map((blog) => {
