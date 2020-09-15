@@ -26,7 +26,7 @@ yarn add react react-dom gatsby netlify-cli use-cloudinary cloudinary react-drop
 
 Add some default folders and files.
 
-```
+```bash
 mkdir src/pages
 mkdir src/components
 mkdir functions
@@ -44,7 +44,7 @@ export default () => {
 
 Before we move on nows the time to create you free Cloudinary account if you don't already have one. You will need to grab your cloud name, API key and API secret. Theses are best stored as env variables so create a .env file at the projects root and add them.
 
-```
+```bash
 CLOUDINARY_NAME=my-project
 CLOUDINARY_API_KEY=xxxxxxxxxxxxxxxxxx
 CLOUDINARY_API_SECRET=xxxxxxxxxxxxxxxxxxxxx
@@ -54,7 +54,7 @@ CLOUDINARY_API_SECRET=xxxxxxxxxxxxxxxxxxxxx
 
 Create a netlify.toml file at the projects root adding the following. This will tell netlify where to look for our function and how to run it.
 
-```toml
+```bash
 [build]
   command = "yarn build"
   functions = "functions"
