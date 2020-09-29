@@ -22,11 +22,9 @@ The marketing team for the company you work for just launched a new product. The
 
 Well that sounds clear and concise. We are to create a landing page and website that will entice the user to purchase the product. For our example we'll skip the website creation and concentrate on creating a killer landing page. For our stack we will keep it modern and use [NextJS](https://nextjs.org/) and [MDX](https://mdxjs.com/). We will style our site with the wonderful [Chakra-UI](https://next.chakra-ui.com/docs/getting-started).
 
-This first section will outline how to install everything you need.
-
 ## Install the stuff
 
-We'll use [create-next-app](https://nextjs.org/docs/getting-started) to bootstrap our project and get the basics installed. Run the following command and input the projects name. I'll choose next-mdx-landing-page, because Im feeling super imaginative but feel free to go wild and name it anything you like
+We'll use [create-next-app](https://nextjs.org/docs/getting-started) to bootstrap our project and get the basics installed. Run the following command and input the projects name. I'll choose next-mdx-landing-page, because Im feeling super imaginative but feel free to go wild and name it anything you like.
 
 ```bash
 yarn create next-app
@@ -154,13 +152,200 @@ export const theme = merge(ChakraTheme, {
 });
 ```
 
-For the sites font, I went with [Nunito](https://fonts.google.com/specimen/Nunito?query=nu) from Google fonts. Feel free to change this. Using the Chakra global styles object we can easily set the font for the whole site in the html and body tag. If we were to have two fonts then another approach could be to use the fonts object key in the theme and set our different fonts. Then these would be accessed via the fontFamily key on the Chakra components.
+For the sites font, I went with [Nunito](https://fonts.google.com/specimen/Nunito?query=nu) from Google fonts. Feel free to change this. Using the Chakra global styles object we can easily set the font for the whole site in the html and body tag. If we were to have two fonts, say for our headers and body, then another approach could be to use the fonts object key in the theme and set our different fonts. Then these would be accessed via the fontFamily key on the Chakra components.
 
-```js
+```jsx
+// Set the fonts
   fonts: {
     heading: 'Nunito',
     body: 'Open Sans'
-  },
+  }
+
+// Usage
+    <Text fonFamily="heading">
+      Hiya!
+    </Text>
 ```
 
-Now that we have our base colors its time to reflect and think about the design...
+Which ever way we choose to use our fonts we must first set them so that our site can use them. The easiest way to do this is by simply adding a link tag into the sites html head. You could do this on every page (assuming you had many pages in your site) but next gives us a nice solution which enables us to override one file and insert our link there. In our pages directory create a new file called \_document.js. This is a custom document used to augment the sites html and body tags. From here we can insert a script or link into the head and it will be applied to every page in our site. In our case we are going to insert our link tag from Google fonts.
+
+```jsx
+import Document, { Head, Main, NextScript } from 'next/document';
+import React from 'react';
+
+class MyDocument extends Document {
+  render() {
+    return (
+      <html lang="en">
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
+  }
+}
+
+export default MyDocument;
+```
+
+Going back to our \_app.js file we can now import and pass in our new theme file so that Chakra knows that it exists.
+
+```jsx
+import { MDXProvider } from '@mdx-js/react';
+import { ChakraProvider } from '@chakra-ui/core';
+import { theme } from './../theme';
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider theme={theme} resetCSS>
+      <MDXProvider>
+        <Component {...pageProps} />
+      </MDXProvider>
+    </ChakraProvider>
+  );
+}
+
+export default MyApp;
+```
+
+## MDX Components
+
+MDX is just markdown that can render React components. That means that as well as using typical markdown syntax such as the pounds for titles and dashes for lists we can map custom components to these default markdown elements, enabling us to personalise our file while at the same time writing it in standard markdown syntax. Lets add use some of the Chakra components and map them to our markdown elements and pass them into the MDXProvider.
+
+```jsx
+//  Creating the components mapping
+const components = {
+  h1: (props) => (
+    <Text fontSize="2xl" mb={3}>
+      {props.children}
+    </Text>
+  ),
+  h2: (props) => (
+    <Text fontSize="1xl" my={3}>
+      {props.children}
+    </Text>
+  ),
+  h3: (props) => (
+    <Text fontSize="xl" my={3}>
+      {props.children}
+    </Text>
+  ),
+  p: (props) => <Text my={2}>{props.children}</Text>
+  ul: (props) => <UnorderedList my={2}>{props.children}</UnorderedList>,
+  li: (props) => <ListItem>{props.children}</ListItem>,
+  MyCustomComponent
+};
+
+
+// Passing in the components
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider theme={theme} resetCSS>
+      <MDXProvider components={components}>
+          <Component {...pageProps} />
+      </MDXProvider>
+    </ChakraProvider>
+  )
+}
+```
+
+As you can see from the above object, we map the Chakra component to an object key that represents a markdown (well, a html element that is mapped in markdown to certain symbols) element. Now when we write markdown the h1, h2, h3, p, ul and li will map to those from Chakra and in turn conform to our theme. One more special thing to note here is that we can pass in custom React components (Like the MyCustomComponent) and they will be available to us in the MDX file without having to import them. This is where some of the power of MDX comes into play. We can create anything we want, be it a chart to display data or a simple box to display text in a certain format. Take this simple example, a component I wrote to display the Prerequisites for my tutorial pieces (You would have encountered it as you entered this page).
+
+```jsx
+import { Flex, Text, UnorderedList, ListItem, Box } from '@chakra-ui/core';
+import React from 'react';
+import { RoughNotation } from 'react-rough-notation';
+
+const Prerequisites = ({ audience, stackKnowledge }) => {
+  return (
+    <Flex
+      direction="column"
+      bg="brand.text"
+      border="solid 2px"
+      borderColor="brand.crayola.500"
+      borderRadius="5px"
+      p={4}
+      justify="space-evenly"
+      minH="250px"
+      maxW="650px"
+      m="2em auto"
+    >
+      <Box>
+        <Box w="max-content">
+          <RoughNotation type="highlight" color="#FEE440" show={true}>
+            <Text fontFamily="heading" fontSize="xl">
+              Prerequisites
+            </Text>
+          </RoughNotation>
+        </Box>
+
+        <Text color="brand.crayola.100" mt={2}>
+          {audience}
+        </Text>
+      </Box>
+      <Box>
+        <Box w="max-content">
+          <RoughNotation type="highlight" color="#FEE440" show={true}>
+            <Text fontFamily="heading" fontSize="md">
+              Helpful to know
+            </Text>
+          </RoughNotation>
+        </Box>
+
+        <UnorderedList mt={2} color="brand.crayola.100">
+          {stackKnowledge.map((stack) => (
+            <ListItem>{stack}</ListItem>
+          ))}
+        </UnorderedList>
+      </Box>
+    </Flex>
+  );
+};
+
+export default Prerequisites;
+```
+
+Which is then used in this MDX file like below. Of course, this is a very simple component and one I will continue to work on but it gives you an idea for what is possible with MDX.
+
+```jsx
+<Prerequisites
+  audience="This tutorial assumes some prior knowledge of modern frontend development but will safely guide you through the whole setup and development process."
+  stackKnowledge={['React', 'JavaScript']}
+/>
+```
+
+## Layouts
+
+Our landing page has got to draw the attention of the general public, our clients products fate is in our hands! For this kind of task, with no layout brief supplied I like to dive into the world of posters. Posters are a great resource for getting layout ideas. Posters are designed to provide as much information as possible to the viewer while still be pleasing on the eye so they engage the viewer long enough for them to soak up the message. One such site which is filled with awesome designs is [swissted.com](https://www.swissted.com).
+
+Now lets for a moment assume that our clients company name is Bad Design. I know, I know, but bear with me. This will play quite nicely with our choice of design, not to mention its a bit tongue in cheek! Taking the [Bad Religion](https://www.swissted.com/products/bad-religion-at-eagles-lodge-1990) poster we can replace the words Bad Religion with Bad Design. This poster also gives us a nice chance to play around with CSS grid implementations and how we would do that in an MDX file!
+
+<img
+  src="/bad-religion-poster.png"
+  alt="An orange and black poster with the text bad religion"
+/>
+
+You'll notice that the colors are very simple, we have an orange, a white and a black. If we add our clients info at the top of the page the same as the poster we can logically say they our grid will have 3 columns and 5 rows. This should be a fairly straight forward layout to recreate, we'll use the Grid component exported from Chakra which comes with some nice shorthand props. I took the liberty of using an [Eye Dropper](https://chrome.google.com/webstore/detail/eye-dropper/hmdcmlfkchdmnmnmheododdhjedfccka?hl=sv) tool (A chrome extension) to grab the exact orange, black and white shades. Lets add those to our theme.js file.
+
+```js
+// Imports...
+
+export const theme = merge(ChakraTheme, {
+  // Other stuff
+
+  colors: {
+    brand: {
+      orange: '#f14011',
+      black: '#000000',
+      grey: '#dee0d4',
+    },
+  },
+});
+```

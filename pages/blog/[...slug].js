@@ -14,6 +14,7 @@ import {
   UnorderedList,
   ListItem,
   Link,
+  Image,
 } from '@chakra-ui/core';
 import SemiCircle from 'src/assets/svg/semi-circle';
 import ZigZags from './../../src/assets/svg/zig-zags';
@@ -49,6 +50,9 @@ const components = {
     </Link>
   ),
   Prerequisites,
+  img: (props) => (
+    <Image m="0 auto" src={props.src} alt={props.alt} boxSize={props.boxSize} />
+  ),
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {

@@ -25,7 +25,9 @@ const Prerequisites = ({ audience, stackKnowledge }) => {
           </RoughNotation>
         </Box>
 
-        <Text color="brand.crayola.100" mt={2}>{audience}</Text>
+        <Text color="brand.crayola.100" mt={2}>
+          {audience}
+        </Text>
       </Box>
       <Box>
         <Box w="max-content">
