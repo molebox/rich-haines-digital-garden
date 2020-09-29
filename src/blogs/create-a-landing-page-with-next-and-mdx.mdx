@@ -478,6 +478,22 @@ export default Section;
 
 Here we are creating a flexible section, setting its background color to the posters orange, passing in children which in turn are passed to a Text component and then spreading the rest of the props that may or may not be added later on. In fact we will use the rest to tell this component where in the grid it should go.
 
+Finally we need to wrap our MDX in our new Layout component.
+
+```jsx
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider theme={theme} resetCSS>
+      <Layout>
+        <MDXProvider components={components}>
+          <Component {...pageProps} />
+        </MDXProvider>
+      </Layout>
+    </ChakraProvider>
+  );
+}
+```
+
 So now that we have all of our pieces lets put them together and see how simple it can be to re-create that poster!
 
 ## The Poster
