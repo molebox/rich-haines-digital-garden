@@ -22,6 +22,8 @@ The marketing team for the company you work for just launched a new product. The
 
 Well that sounds clear and concise. We are to create a landing page and website that will entice the user to purchase the product. For our example we'll skip the website creation and concentrate on creating a killer landing page. For our stack we will keep it modern and use [NextJS](https://nextjs.org/) and [MDX](https://mdxjs.com/). We will style our site with the wonderful [Chakra-UI](https://next.chakra-ui.com/docs/getting-started).
 
+We will also go over how to create a page from a design and dive into a little CSS grid. Oh you lucky lot!
+
 ## Install the stuff
 
 We'll use [create-next-app](https://nextjs.org/docs/getting-started) to bootstrap our project and get the basics installed. Run the following command and input the projects name. I'll choose next-mdx-landing-page, because Im feeling super imaginative but feel free to go wild and name it anything you like.
@@ -126,7 +128,7 @@ export const theme = merge(ChakraTheme, {
   styles: {
     global: {
       'html, body': {
-        fontFamily: 'Nunito',
+        fontFamily: 'Roboto',
       },
     },
   },
@@ -141,6 +143,10 @@ export const theme = merge(ChakraTheme, {
     '4xl': '36px',
     '5xl': '48px',
     '6xl': '100px',
+    '7xl': '150px',
+    '8xl': '175px',
+    '9xl': '200px',
+    huge: '250px',
   },
   colors: {
     brand: {
@@ -152,12 +158,12 @@ export const theme = merge(ChakraTheme, {
 });
 ```
 
-For the sites font, I went with [Nunito](https://fonts.google.com/specimen/Nunito?query=nu) from Google fonts. Feel free to change this. Using the Chakra global styles object we can easily set the font for the whole site in the html and body tag. If we were to have two fonts, say for our headers and body, then another approach could be to use the fonts object key in the theme and set our different fonts. Then these would be accessed via the fontFamily key on the Chakra components.
+For the sites font, I went with [Roboto](https://fonts.google.com/specimen/Roboto?preview.text=bad%20religion&preview.text_type=custom&sidebar.open=true&selection.family=Roboto:wght@500;900) from Google fonts. Feel free to change this. Using the Chakra global styles object we can easily set the font for the whole site in the html and body tag. If we were to have two fonts, say for our headers and body, then another approach could be to use the fonts object key in the theme and set our different fonts. Then these would be accessed via the fontFamily key on the Chakra components.
 
 ```jsx
 // Set the fonts
   fonts: {
-    heading: 'Nunito',
+    heading: 'Roboto',
     body: 'Open Sans'
   }
 
@@ -179,7 +185,7 @@ class MyDocument extends Document {
       <html lang="en">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap"
             rel="stylesheet"
           />
         </Head>
@@ -348,4 +354,171 @@ export const theme = merge(ChakraTheme, {
     },
   },
 });
+```
+
+Sweet, now that we have our colors lets get started with our components. Inside the components folder add 4 new components.
+
+- header.js
+- header-text.js
+- layout.js
+- section.js
+
+These will form the basis for our landing page. We will be splitting up our components and making them an generic as possible so that we can reuse them if we choose to add more pages to the site further down the line. Starting with the layout, and keeping one eye on our design, lets create our grid.
+
+```jsx
+import { Grid } from '@chakra-ui/core';
+import React from 'react';
+
+const Layout = ({ children }) => {
+  return (
+    <Grid
+      templateColumns="repeat(3, 1fr)"
+      templateRows="10% 25% 20% 35% 1fr"
+      gap={4}
+      bg="brand.grey"
+      h="100vh"
+      w="100%"
+      border="solid 10px"
+      borderColor="brand.grey"
+      maxW="1000px"
+      m="0 auto"
+    >
+      {children}
+    </Grid>
+  );
+};
+```
+
+We take advantage of the Chakra Grid component and pass in any children, these will amount to the columns and rows. Our page will be responsive so and look like a poster. We have used percentages for the rows as this gives us some flexibility when the viewport changes size. Our 3 columns are set to take up all available space. We set a grid gap and the background color to our grey/white, that way the gaps appear to actually be the background of the page. By giving the grid a max width of 1000px we are keeping to the poster format and our classic margin trick of vertical 0, horizontal auto centers the whole thing.
+
+Moving on to our header component then.
+
+```jsx
+import { Flex } from '@chakra-ui/core';
+import React from 'react';
+
+const Header = ({ children }) => {
+  return (
+    <Flex
+      bg="brand.black"
+      color="brand.grey"
+      as="header"
+      justify="space-evenly"
+      alignItems="flex-end"
+      p={3}
+      w="100%"
+      gridRow="1"
+      gridColumn="1 / -1"
+    >
+      {children}
+    </Flex>
+  );
+};
+
+export default Header;
+```
+
+This will be the black strip that runs along the top of the page and houses 3 pieces of text. Chakras Flex component is basically just a div with some nice flex like defaults, for example, if we don't specify it will default to flex-direction="row". Another nice touch that should be utilized when using Chakra is the as prop. With this we can keep our components and in turn our HTML semantic. Our header is in fact a header so we set it as so. The grid row is quite obvious. The grid column however may look a little strange but really its quite simple. We are saying that this component should start at column 1 and end at the last columns edge. Much like if we were to grab the last element form an array, -1 tells grid that we want the end.
+
+Our header component accepts children, those children will be our next component, the HeaderText.
+
+```jsx
+import { Text } from '@chakra-ui/core';
+import React from 'react';
+
+const HeaderText = ({ children }) => {
+  return (
+    <Text
+      textTransform="uppercase"
+      color="brand.grey"
+      fontSize={['md', '1xl', '2xl']}
+    >
+      {children}
+    </Text>
+  );
+};
+
+export default HeaderText;
+```
+
+This component does exactly what it says on the tin. That is, it just displays its children in a Chakra Text component. Here we utilize the responsive array syntax so that depending on the viewports size, our text will shrink or grow. We can specify these breakpoints in our theme file using the breakpoints key like so:
+
+```js
+breakpoints: ['30em', '48em', '62em', '80em'];
+```
+
+But this is unnecessary for our use case and we can just accept the defaults. (Which happen to be the above) In the responsive array syntax, if we skip an index or pass in null then it will be ignored. In our case we make a broad assumption that for mobile we'll use md, tablet 1xl and desktop 2xl.
+
+Our last component is what will section up our content and set our elements in place for the grid to work its magic.
+
+```jsx
+import { Flex, Text } from '@chakra-ui/core';
+import React from 'react';
+
+const Section = ({ children, ...rest }) => {
+  return (
+    <Flex
+      as="section"
+      bg="brand.orange"
+      color="brand.black"
+      w="100%"
+      h="100%"
+      p={2}
+      {...rest}
+    >
+      <Text my={2} alignSelf="flex-end">
+        {children}
+      </Text>
+    </Flex>
+  );
+};
+
+export default Section;
+```
+
+Here we are creating a flexible section, setting its background color to the posters orange, passing in children which in turn are passed to a Text component and then spreading the rest of the props that may or may not be added later on. In fact we will use the rest to tell this component where in the grid it should go.
+
+So now that we have all of our pieces lets put them together and see how simple it can be to re-create that poster!
+
+## The Poster
+
+```jsx
+<Header>
+
+<HeaderText>Bad</HeaderText>
+<HeaderText>By</HeaderText>
+<HeaderText>Design</HeaderText>
+
+</Header>
+
+<Section
+  gridRow="2 / 4"
+  gridColumn="1 / 3"
+  fontSize={["6xl", "8xl", "huge"]}
+  fontWeight="900"
+>
+  bad
+</Section>
+
+<Section gridRow="2 / 4" gridColumn="3"></Section>
+
+<Section
+  gridRow="4"
+  gridColumn="1 / -1"
+  fontSize={["6xl", "5xl", "huge"]}
+  fontWeight="900"
+>
+  design
+</Section>
+
+<Section
+  gridRow="5"
+  gridColumn="1 / -1"
+  alignItems="flex-start"
+  fontSize={["2xl", "3xl", "4xl"]}
+  color="brand.grey"
+  mt="-20px"
+>
+  coming soon
+</Section>
 ```
