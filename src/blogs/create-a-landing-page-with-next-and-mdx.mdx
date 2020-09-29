@@ -11,10 +11,10 @@ growth: baby
 
 I recently received [Colby Fayocks](https://twitter.com/colbyfayock) [50reactprojects](https://50reactprojects.com/) and thought it would be a fun idea to run through some of the example projects as tutorials, while putting a little spin on them. So we begin with project 1 of the 50 (well, why not!), the marketing website. Colby does a great job of listing out the requirements of the project and some of the tech you could use to get it made.
 
-This tutorial will assume some prior knowledge of the following:
-
-- JavaScript
-- React
+<Prerequisites
+  audience="This tutorial assumes some prior knowledge of modern frontend development but will safely guide you through the whole setup and development process."
+  stackKnowledge={['React', 'JavaScript']}
+/>
 
 ## The brief
 
@@ -49,7 +49,7 @@ So to recap, remove the following from the project:
 
 ## Enabling MDX
 
-We'll keep the public folder incase we want to store some images later on. Now our app is going to need just one page, a landing page. That page is going to be an MDX file. So go ahead and create a new index.mdx inside the pages folder. Then open up \_app.js, this is the root of our site, it's form here that we will wrap the app and provide our mdx file its components. For now lets wrap the base component with the MDXProvider.
+We'll keep the public folder incase we want to store some images later on. Now our app is going to need just one page, a landing page. That page is going to be an MDX file. So go ahead and create a new index.mdx inside the pages folder. Then open up \_app.js, this is the root of our site, it's from here that we will wrap the app and provide our MDX file its components. For now lets wrap the base component with the MDXProvider.
 
 ```jsx
 import { MDXProvider } from '@mdx-js/react';
@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 ```
 
-There is no need to import React as it's globally available to us. Open up the index.mdx file and write the traditional "MDX is amazing". Now for Next to be able to pick up our mdx file located in the pages directory we will have to configure it to do so. At the projects root create a new file called next.config.js. In here we will require mdx and set the page extensions to look for mdx files in the pages directory.
+There is no need to import React as it's globally available to us. Open up the index.mdx file and write the traditional "MDX is amazing". Now for Next to be able to pick up our MDX file located in the pages directory we will have to configure it to do so. At the projects root create a new file called next.config.js. In here we will require MDX and set the page extensions to look for MDX files in the pages directory.
 
 ```js
 const withMDX = require('@next/mdx')({
@@ -80,7 +80,7 @@ Now we can run `yarn dev`, Next will spin up a dev server for us on port 3000, a
 
 ## Get some styling in there
 
-Cool beans, our project works and our app loads an mdx file. But it's nothing to look at at the moment. Let's add Chakra-UI. We'll be using v1.0 so be sure to consult the documentation for that version (which at the time of writing is the latest) if you run into any troubles with Chakra.
+Cool beans, our project works and our app loads an MDX file. But it's nothing to look at at the moment. Let's add Chakra-UI. We'll be using v1.0 so be sure to consult the documentation for that version (which at the time of writing is the latest) if you run into any troubles with Chakra.
 
 As a brief overview of the installation differences, < v1.0 you had to install
 
@@ -114,9 +114,9 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 ```
 
-Now that we have Chakra hooked up let's add a base theme. Out of the box Chakra comes with some great defaults for colors inspired by Tailwind CSS, but as a way of learning how to do it we can add our own colors. I like to explore [coolors.co](https://coolors.co/) when trying to find inspiration for website color pallets. In the top right click explore and find a pallete that you like. Once you have decided on your pallet click the 3 dots and open in generator. Once there you can click view shades on each color and choose some different shades, getting lighter from the original color (so 4 steps upward until you have 5 shades including the original) These will come in handy when adding depth to elements.
+Now that we have Chakra hooked up let's add a base theme. Out of the box Chakra comes with some great defaults for colors inspired by Tailwind CSS, but as a way of learning how to do it we can add our own colors. I like to explore [coolors.co](https://coolors.co/) when trying to find inspiration for website color palette. In the top right click explore and find a palette that you like. Once you have decided on your palette click the 3 dots and open in generator. Once there you can click view shades on each color and choose some different shades, getting lighter from the original color (so 4 steps upward until you have 5 shades including the original) These will come in handy when adding depth to elements.
 
-Create a theme.js file at the projects root. (These are the exact color I use for this site!)
+Create a theme.js file at the projects root. This will enable us to house our sites styles in one place and easily import and use them in our Chakra components.
 
 ```js
 // 1. Import the theme and merge util
@@ -125,61 +125,42 @@ import { merge } from '@chakra-ui/utils';
 
 // 2. Extend the theme to include custom colors, fonts, etc.
 export const theme = merge(ChakraTheme, {
+  styles: {
+    global: {
+      'html, body': {
+        fontFamily: 'Nunito',
+      },
+    },
+  },
+  fontSizes: {
+    xs: '12px',
+    sm: '14px',
+    md: '16px',
+    lg: '18px',
+    xl: '20px',
+    '2xl': '24px',
+    '3xl': '28px',
+    '4xl': '36px',
+    '5xl': '48px',
+    '6xl': '100px',
+  },
   colors: {
     brand: {
-      text: '#121212',
-      capri: {
-        100: '#00BBF9',
-        200: '#00B8F5',
-        300: '#00A8E0',
-        400: '#0099CC',
-        500: '#0080B8',
-      },
-      seaGreen: {
-        100: '#00F5D4',
-        200: '#00E0C2',
-        300: '#00CCB1',
-        400: '#00B89F',
-        500: '#00A38D',
-      },
-      minionYellow: {
-        100: '#FEE440',
-        200: '#FEE334',
-        300: '#FEE020',
-        400: '#FEDD0B',
-        500: '#F4D301',
-      },
-      crayola: {
-        100: '#F15BB5',
-        200: '#F056B3',
-        300: '#EF43AA',
-        400: '#ED31A2',
-        500: '#EB1E99',
-      },
-      amethyst: {
-        100: '#9B5DE5',
-        200: '#9250E2',
-        300: '#873EE0',
-        400: '#7C2CDD',
-        500: '#7222D3',
-      },
+      900: '#1a365d',
+      800: '#153e75',
+      700: '#2a69ac',
     },
   },
 });
 ```
 
-Now that we have our base colors its time to reflect and think about the design..... (I'll let you into a little secret, that color pallet is this sites color pallet)
-
-If we wanted to add some global styles such as a custom cursor....We could add it to the theme config like so:
+For the sites font, I went with [Nunito](https://fonts.google.com/specimen/Nunito?query=nu) from Google fonts. Feel free to change this. Using the Chakra global styles object we can easily set the font for the whole site in the html and body tag. If we were to have two fonts then another approach could be to use the fonts object key in the theme and set our different fonts. Then these would be accessed via the fontFamily key on the Chakra components.
 
 ```js
-  styles: {
-    global: {
-      'html, body': {
-        cursor: 'url(/absolute-path-to-funny-thing), auto',
-      },
-    },
+  fonts: {
+    heading: 'Nunito',
+    body: 'Open Sans'
   },
 ```
 
-This is housed in the public folder. Next js serves static assets via the public folder. If you add an asset to the folder they become available just by adding a forward slash before the named source => src="/my-image.png" so in public/my-image.png.
+Now that we have our base colors its time to reflect and think about the design...

@@ -19,6 +19,7 @@ import SemiCircle from 'src/assets/svg/semi-circle';
 import ZigZags from './../../src/assets/svg/zig-zags';
 import Navbar from '@components/Navbar';
 import { RoughNotation } from 'react-rough-notation';
+import Prerequisites from './../../src/components/post/prerequisites';
 
 const components = {
   code: Code,
@@ -47,6 +48,7 @@ const components = {
       </RoughNotation>
     </Link>
   ),
+  Prerequisites,
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {

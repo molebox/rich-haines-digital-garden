@@ -35,7 +35,7 @@ export default function Code({ children, className }) {
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <Flex position="relative" direction="column">
+        <Flex position="relative" direction="column" my={6}>
           <Grid
             h="50px"
             bg="brand.text"
