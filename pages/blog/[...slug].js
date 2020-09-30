@@ -21,6 +21,7 @@ import ZigZags from './../../src/assets/svg/zig-zags';
 import Navbar from '@components/Navbar';
 import { RoughNotation } from 'react-rough-notation';
 import Prerequisites from './../../src/components/post/prerequisites';
+import LearntSoFar from './../../src/components/post/learnt-so-far';
 
 const components = {
   code: Code,
@@ -53,6 +54,7 @@ const components = {
   img: (props) => (
     <Image m="0 auto" src={props.src} alt={props.alt} boxSize={props.boxSize} />
   ),
+  LearntSoFar,
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {
