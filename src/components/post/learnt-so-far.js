@@ -21,7 +21,7 @@ const LearntSoFar = ({ pointsCovered }) => {
       bg="brand.crayola.100"
       h="auto"
       maxW="600px"
-      m="2em auto"
+      m="3em auto"
     >
       <Image
         boxSize={[70, 90]}

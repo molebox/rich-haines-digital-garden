@@ -27,7 +27,7 @@ export default function ContentBox({ blog }) {
         bgColor: 'brand.crayola.300',
         borderRadius: '5px',
       }}
-      h="250px"
+      h={['300px', '250px']}
       w="100%"
       onMouseEnter={() => setShowNotation(true)}
       onMouseLeave={() => setShowNotation(false)}
@@ -41,7 +41,7 @@ export default function ContentBox({ blog }) {
         borderRadius="5px"
         p={8}
         position="relative"
-        h="250px"
+        h={['300px', '250px']}
       >
         {growth()}
         <Stack>

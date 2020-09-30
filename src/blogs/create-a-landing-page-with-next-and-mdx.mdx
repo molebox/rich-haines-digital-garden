@@ -244,35 +244,37 @@ const components = {
     </Text>
   ),
   h2: (props) => (
-    <Text fontSize="1xl" my={3}>
-      {props.children}
-    </Text>
-  ),
-  h3: (props) => (
     <Text fontSize="xl" my={3}>
       {props.children}
     </Text>
   ),
-  p: (props) => <Text my={2}>{props.children}</Text>
+  h3: (props) => (
+    <Text fontSize="md" my={3}>
+      {props.children}
+    </Text>
+  ),
   ul: (props) => <UnorderedList my={2}>{props.children}</UnorderedList>,
   li: (props) => <ListItem>{props.children}</ListItem>,
-  MyCustomComponent
+  p: (props) => <Text my={2}>{props.children}</Text>,
+  Header,
+  HeaderText,
+  Section,
+  Layout,
 };
-
 
 // Passing in the components
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme} resetCSS>
       <MDXProvider components={components}>
-          <Component {...pageProps} />
+        <Component {...pageProps} />
       </MDXProvider>
     </ChakraProvider>
-  )
+  );
 }
 ```
 
-As you can see from the above object, we map the Chakra component to an object key that represents a markdown (well, a html element that is mapped in markdown to certain symbols) element. Now when we write markdown the h1, h2, h3, p, ul and li will map to those from Chakra and in turn conform to our theme. One more special thing to note here is that we can pass in custom React components (Like the MyCustomComponent) and they will be available to us in the MDX file without having to import them. This is where some of the power of MDX comes into play. We can create anything we want, be it a chart to display data or a simple box to display text in a certain format. Take this simple example, a component I wrote to display the Prerequisites for my tutorial pieces (You would have encountered it as you entered this page).
+As you can see from the above object, we map the Chakra component to an object key that represents a markdown (well, a html element that is mapped in markdown to certain symbols) element. Now when we write markdown the h1, h2, h3, p, ul and li will map to those from Chakra and in turn conform to our theme. One more special thing to note here is that we can pass in custom React components (Like the Header, HeaderText and Section. Don't worry, we'll create those in a sec) and they will be available to us in the MDX file without having to import them. This is where some of the power of MDX comes into play. We can create anything we want, be it a chart to display data or a simple box to display text in a certain format. Take this simple example, a component I wrote to display the Prerequisites for my tutorial pieces (You would have encountered it as you entered this page).
 
 ```jsx
 import { Flex, Text, UnorderedList, ListItem, Box } from '@chakra-ui/core';
@@ -488,27 +490,12 @@ export default Section;
 
 Here we are creating a flexible section, setting its background color to the posters orange, passing in children which in turn are passed to a Text component and then spreading the rest of the props that may or may not be added later on. In fact we will use the rest to tell this component where in the grid it should go.
 
-Finally we need to wrap our MDX in our new Layout component.
-
-```jsx
-function MyApp({ Component, pageProps }) {
-  return (
-    <ChakraProvider theme={theme} resetCSS>
-      <Layout>
-        <MDXProvider components={components}>
-          <Component {...pageProps} />
-        </MDXProvider>
-      </Layout>
-    </ChakraProvider>
-  );
-}
-```
-
-So now that we have all of our pieces lets put them together and see how simple it can be to re-create that poster!
-
 ## The Poster
 
+So now that we have all of our pieces lets put them together and see how simple it can be to re-create that poster! Head on over to the index.mdx file you created at the beginning of this tutorial and add the following:
+
 ```jsx
+<Layout>
 <Header>
 
 <HeaderText>Bad</HeaderText>
@@ -520,7 +507,7 @@ So now that we have all of our pieces lets put them together and see how simple 
 <Section
   gridRow="2 / 4"
   gridColumn="1 / 3"
-  fontSize={["6xl", "8xl", "huge"]}
+  fontSize={['6xl', '8xl', 'huge']}
   fontWeight="900"
 >
   bad
@@ -531,7 +518,7 @@ So now that we have all of our pieces lets put them together and see how simple 
 <Section
   gridRow="4"
   gridColumn="1 / -1"
-  fontSize={["6xl", "5xl", "huge"]}
+  fontSize={['6xl', '5xl', 'huge']}
   fontWeight="900"
 >
   design
@@ -547,10 +534,43 @@ So now that we have all of our pieces lets put them together and see how simple 
 >
   coming soon
 </Section>
+</Layout>
+
+
+<Section bg="brand.grey" mt={6} maxW="1000px" m="0 auto">
+
+
+And here is some normal markdown text. This is using the styling that we mapped in the components object which was passed into the MDXProvider.
+
+# And here is an h1
+
+## An h2
+
+### An h3
+
+And a list of stuff
+
+- MDX is great
+- Yeah, it's pretty cool
+
+BTW in case you are wondering, we have used our section here as we have a layout component which sets its max width to 1000px and we made our section component so that we could use it outside of out main layout by spreading the rest of the props.
+
+But we don't have to use a component in MDX......
+
+</Section>
+
+
+We could just write here, but seeing as we don't have a global layout for this file, this text wont conform to the max width set by our layout component.
 ```
 
-As you can see, we are utilizing some of the stuff we have learnt along the way such as our grid column syntax and the responsive array syntax. Its not a perfect match to the poster but I believe that our client would be mightily impressed with our work!
+<LearntSoFar
+  pointsCovered={[
+    'CSS Grid! And end of column syntax',
+    'Responsive array syntax',
+    'Using React components in markdown!',
+  ]}
+/>
 
-Now I know what you might be thinking.... You haven't used any markdown syntax, this could have just been a regular JSX file. And you would be correct in thinking that! Buuuuuuut. What we have above is a collection of generic(ish) components which can be used both in MDX files and normal JSX. If we wanted we could just start writing straight in the markup whatever we wanted and it would map to our components passed into the MDXProvider and be styled the way we want. We could re-use our Section component again and create a whole new section of the page that is pure markdown if we wanted, or we could create a new JSX page and use the same components, if we were that way inclined.
+Its not a perfect match to the poster but I believe that our client would be mightily impressed with our work!
 
 This post is a work in progress and I may add more parts to it as and when I find the time. Im sure our client would like to display some images of their super amazing new product after all, but we will leave that for another day. Thanks for reading, I'll post on Twitter if and when I add more content to this!
