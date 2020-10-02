@@ -55,7 +55,6 @@ export default function SearchPage({ allMdx }) {
             m={6}
           >
             {filteredBlogs?.map((blog) => {
-              console.log({ blog });
               return (
                 blog.published && <ContentBox key={blog.slug} blog={blog} />
               );
