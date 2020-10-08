@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/core';
 
-function ThreeTriangles() {
+function ThreeTriangles({ top, right, left, bottom }) {
   return (
     <Box
       as="svg"
@@ -12,8 +12,12 @@ function ThreeTriangles() {
       xmlns="http://www.w3.org/2000/svg"
       display={['none', 'block']}
       position="absolute"
-      right="15%"
-      top="175px"
+      top={top}
+      left={left}
+      right={right}
+      bottom={bottom}
+      // right="15%"
+      // top="175px"
     >
       <g id="3-triangles">
         <path id="triangle-top" d="M0 0H46.5174V47.4926L0 0Z" fill="#F15BB5" />

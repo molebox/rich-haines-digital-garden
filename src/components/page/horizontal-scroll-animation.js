@@ -44,7 +44,7 @@ const HorizontalScrollAnimation = () => {
         <ProjectImageList />
         <TextBox firstText="LIKE" secondText="IN THESE PICS" />
         <ProjectImageList />
-        <TextBox mb={100} firstText="NUFF" secondText="SAID" />
+        <TextBox mb={100} firstText="NUFF SAID" />
       </Box>
     </Box>
   );

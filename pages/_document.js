@@ -15,6 +15,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script src="https://kwes.io/v2/kwes-script.js" defer></script>
         </body>
       </html>
     );

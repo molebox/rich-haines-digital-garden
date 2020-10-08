@@ -41,7 +41,7 @@ export default function SearchPage({ allMdx }) {
         pb={3}
       >
         <SemiCircle />
-        <ZigZags />
+        <ZigZags right="5%" top="30px" />
         <Triangle />
         <FourDotsHorizontal />
         <Sun />

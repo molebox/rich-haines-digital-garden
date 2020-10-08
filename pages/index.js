@@ -20,6 +20,7 @@ import Moon from '@components/moon';
 import DotsBox from 'src/assets/svg/dots-box';
 import Footer from './../src/components/footer';
 import HorizontalScrollAnimation from './../src/components/page/horizontal-scroll-animation';
+import ContactForm from './../src/components/page/contact-form';
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
@@ -58,10 +59,10 @@ export default function Index({ cookies }) {
           <FourDotsHorizontal />
           <FourDotsDiagonal />
           <Triangle />
-          <SemiCircle />
+          <SemiCircle left="0" top="400px" />
           {/* <DotsBox /> */}
           <Crosses />
-          <ThreeTriangles />
+          <ThreeTriangles right="15%" top="175px" />
           {/* <SingleCrossLarge /> */}
           <SingleCrossSmall1 />
           <SingleCrossSmall2 />
@@ -111,15 +112,15 @@ export default function Index({ cookies }) {
                 my={3}
                 id="about-2"
               >
-                This is the new home for my digital garden. Its a fun space for
-                me to experiment with stuff and spill my thoughts into MDX
-                (Because MDX is cool).
+                This is a fun space for me to experiment with stuff and spill my
+                thoughts into MDX (Because MDX is cool).
               </Text>
               <NavLink href="/blogs/search">start reading</NavLink>
             </Container>
           </Grid>
         </Box>
         <HorizontalScrollAnimation />
+        <ContactForm />
         <Footer />
       </Chakra>
     </HomePageProvider>
