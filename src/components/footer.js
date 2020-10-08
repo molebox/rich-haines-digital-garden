@@ -8,19 +8,24 @@ const Footer = () => {
   return (
     <Flex
       direction="column"
-      gridArea="footer"
       as="footer"
       alignItems="center"
       alignSelf="center"
       justifySelf="center"
-      w="275px"
+      // w="275px"
+      borderTop="solid 5px"
+      borderColor="brand.minionYellow.100"
+      bg="brand.amethyst.500"
+      h="150px"
+      p={6}
     >
       <Flex
         direction="row"
         mt={6}
         align="center"
         justify="space-evenly"
-        w="100%"
+        w="275px"
+        mt={6}
       >
         <Text fontSize="sm">Built with </Text>
         <Link fontSize="sm" isExternal href="https://nextjs.org/">
@@ -35,7 +40,7 @@ const Footer = () => {
         </Link>
         <Text fontSize="sm">and</Text>
         <Link fontSize="sm" isExternal href="https://greensock.com/gsap/">
-          <RoughNotation type="highlight" color="#9B5DE5" show={true}>
+          <RoughNotation type="highlight" color="#00BBF9" show={true}>
             GSAP
           </RoughNotation>
         </Link>

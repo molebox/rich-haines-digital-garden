@@ -13,7 +13,7 @@ function DotsBox() {
       display={['none', 'block']}
       position="absolute"
       left="20%"
-      bottom="10%"
+      top="700px"
     >
       <g id="dots-box">
         <path

@@ -19,6 +19,7 @@ import SmallCloud2 from './../src/components/small-cloud-2';
 import Moon from '@components/moon';
 import DotsBox from 'src/assets/svg/dots-box';
 import Footer from './../src/components/footer';
+import HorizontalScrollAnimation from './../src/components/page/horizontal-scroll-animation';
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
@@ -65,17 +66,6 @@ export default function Index({ cookies }) {
           <SingleCrossSmall1 />
           <SingleCrossSmall2 />
           {/* <ZigZags /> */}
-          {/* <Image
-            boxSize={[60, 100]}
-            fit="cover"
-            src="sponge-bob-pointing.png"
-            // display={['none', 'block']}
-            position="absolute"
-            top={['50px', '140px']}
-            right="45.5%"
-            zIndex={11}
-            alt="SpongeBob Square Pants Pointing"
-          /> */}
           <BigCloud1 />
           <BigCloud2 />
           <SmallCloud1 />
@@ -84,7 +74,6 @@ export default function Index({ cookies }) {
             templateRows="1fr 150px"
             templateAreas={`
             'main main main'
-            '.footer .'
           `}
             h="100vh"
           >
@@ -128,24 +117,10 @@ export default function Index({ cookies }) {
               </Text>
               <NavLink href="/blogs/search">start reading</NavLink>
             </Container>
-            <Footer />
           </Grid>
         </Box>
-        {/* <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
-          <Container centerContent>
-            <Text fontSize="xl" mt={4}>
-              This section is going to use ScrollTrigger and a pin to show
-              different panel layers
-            </Text>
-          </Container>
-        </Box>
-        <Box minH={500} borderTop="solid 5px" borderColor="brand.amethyst.500">
-          <Container centerContent>
-            <Text fontSize="xl" mt={4}>
-              Haven't decided whats going to go here... Exciting!
-            </Text>
-          </Container>
-        </Box> */}
+        <HorizontalScrollAnimation />
+        <Footer />
       </Chakra>
     </HomePageProvider>
   );
