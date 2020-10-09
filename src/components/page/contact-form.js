@@ -36,12 +36,12 @@ const ContactForm = () => {
       </Text>
       <Box
         minW={['300px', '500px']}
-        as="form id="
-        contact-Box
         as="form"
-        className="kwes-form"
-        action="https://kwes.io/api/foreign/forms/FWdNMYui0XaLO8klcpss"
+        name="contact-form"
+        method="POST"
+        data-netlify="true"
       >
+         <input type="hidden" name="bot-field" />
         <FormControl w="100%" my={3} id="name" isRequired>
           <FormLabel fontFamily="heading" fontSize="2xl" htmlFor="name">
             Your name
