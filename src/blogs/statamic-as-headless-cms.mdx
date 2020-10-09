@@ -2,7 +2,7 @@
 title: Statamic as headless CMS
 published: false
 author: Richard Haines
-tags: [tutorial, gatsby]
+tags: [tutorial, statamic, gatsby]
 description: How to use Statamic as a headless CMS hooked up to Gatsby
 growth: baby
 ---
@@ -20,7 +20,6 @@ So what are we going to build? We're going to be using Statamic as a headless CM
 - Basic knowledge of React and JavaScript
 - Basic knowledge of the command line
 - Positivity! Ain't nothing getting done on a downer, let's have some fun!
-- Snacks
 
 Cool beans, let's get started!
 
@@ -114,14 +113,96 @@ All pretty standard stuff
 
 We are going to take advantage of a handy package called gatsby-source-statamic. This is basically a wrapper around a fetch request to our API endpoint that takes care of sorting out all our collections and assets. We have installed Chakra so that we can add some quick styling to our site. This tutorial won't be a deep dive into styling and will keep things pretty basic, Chakra will at least make the experience a little more pleasant on the eye. Finally we have added prettier as a dev dependency. No funny business, just for our piece of mind when we get those tabs in the wrong place and our spacing all mucked up from copying code from one file to another.
 
+Let's take a closer look at Statamic and how we can organise our blog posts before creating and styling our Gatsby frontend.
+
+## The Statamic GUI
+
 Before we can enter our Statamic project we will need to create a new super user to login with. From the command line run the following (amazingly intuitive) code then follow the on terminal prompts.
 
 ```bash
 php please make:user
 ```
 
-## The Statamic GUI
-
 To start our Statamic project open the laragon GUI and in the bottom left hit the Start All button. This will spin up an Apache server running our project. Then navigate to the url that is our project name with .test and possibly the port number. In my case it was http://statamic-gatsby.test:81 This will bring up a login page, login with the super user details you just created then once logged into the home page, click the control panel. It's time to create our first blog post, but before we do let's quickly go over some of the stuff we can do.
 
-On the left of the page you will see a menu with content, fields, tools and users
+On the left of the page you will see a menu with content, fields, tools and users. The content section holds stuff that will be displayed on the site. One of the options here, collections, is where we will be spending most of our time. But I first want to direct you towards the Fields section and the Blueprints option. A blueprint is like a template for a collection entity. When creating or editing a blueprint we can change what fields are expected when creating a collections entity through adding or creating widgets, such as text areas, images or markdown content areas.
+
+## A new collection
+
+Click on the collections tab on the left and then the blue create collection button, call the new collection Posts and hit create. Next you will see a dashboard, click create entity and just add some arbitrary name like My First Post. This will be our first test post. Add some text to the markdown content box, whatever you like, and hit save and publish. This new collection and entity within that collection will now be available to pull into our Gatsby site.
+
+But what if we wanted to add more data to our post? An image perhaps, or a date picker or contact form? Fear not young padawan because that's where the blueprints come into play. now that we have created our new collection we can create a blueprint for each of the new entities that are created under that collection. Head over to the blueprints section and click on the newly created Posts collection. From here you can choose to add or link fields. We wont cover linking fields but adding new fields simply enables you to have access to more fields when creating your collection entities. Add an images field so that each of our blog posts can have a hero image. The default settings will do for us.
+
+If you navigate back to the Posts collection and click on the first entity you create, My First Post, you should now be able to add an image. Pick and image from your filesystem or download one. Add some super informative text to the markdown content area (or just lorem ipsum it up) then create a few more posts, each with a title, content and image.
+
+## Statamic feeding Gatsby
+
+When we left our Gatsby site all we had was a measly package.json and some scripts. Pah! Lets add some meat to those bones! Inside our index.js add teh following:
+
+```jsx
+import React from 'react';
+import {
+  Flex,
+  Container,
+  Link,
+  Text,
+  UnorderedList,
+  ListItem,
+} from '@chakra-ui/core';
+import { graphql, Link as GatsbyLink } from 'gatsby';
+
+const Index = ({ data }) => {
+  const posts = data.allCollectionPosts.nodes;
+
+  return (
+    <Container h="100vh" centerContent>
+      <Flex
+        direction="column"
+        h="100%"
+        w="100%"
+        align="center"
+        justify="center"
+      >
+        <Text as="h1" fontSize="6xl" mb={6}>
+          Statamic Blog
+        </Text>
+        <UnorderedList>
+          {posts.map((post) => (
+            <ListItem>
+              <Link as={GatsbyLink} to={post.slug}>
+                To {post.slug}
+              </Link>
+            </ListItem>
+          ))}
+        </UnorderedList>
+      </Flex>
+    </Container>
+  );
+};
+
+export default Index;
+
+export const query = graphql`
+  query IndexQuery {
+    allCollectionPosts(sort: { fields: [title], order: ASC }) {
+      nodes {
+        slug
+        title
+        content
+        images {
+          permalink
+        }
+      }
+    }
+  }
+`;
+```
+
+WHOA! WTF! Yeah I know, that's quite a lot to digest all of a sudden. Let's break it down in a nice, simple bullet list.
+
+- Imports of the components we use from Chakra. Notice that we import a Link component
+- Imports from Gatsby, the graphql function and the Gatsby Link which we rename as we will be using the Chakra Link instead (for its default styling and accessibility)
+- The page accepts a data object which we destructure
+- We pull out the posts array from the data object
+- The main bulk of the component. A simple flex container which renders an h1 and a list of internal links to blog posts
+- An exported graphql query. It's exported so that our page can pick it up on render. It asks for the post slug, title, main content and image as a permalink. It also has a simple sort by title.

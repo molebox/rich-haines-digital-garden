@@ -41,7 +41,7 @@ const ContactForm = () => {
         method="POST"
         data-netlify="true"
       >
-         <input type="hidden" name="bot-field" />
+        <input type="hidden" name="bot-field" />
         <FormControl w="100%" my={3} id="name" isRequired>
           <FormLabel fontFamily="heading" fontSize="2xl" htmlFor="name">
             Your name
