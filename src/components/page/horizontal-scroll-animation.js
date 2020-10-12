@@ -40,7 +40,7 @@ const HorizontalScrollAnimation = () => {
       overflow="auto"
     >
       <Box overflowX="hidden">
-        <TextBox mt={100} firstText="I MAKE" secondText="COOL STUFF" />
+        <TextBox mt={100} firstText="I'VE MADE" secondText="SOME STUFF" />
         <ProjectImageList />
         <TextBox firstText="LIKE" secondText="IN THESE PICS" />
         <ProjectImageList />

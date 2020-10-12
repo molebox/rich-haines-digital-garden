@@ -28,11 +28,11 @@ const ContactForm = () => {
       minH="1000px"
       position="relative"
     >
-      <ZigZags right="5%" top="300px" />
+      <ZigZags right="5%" top="150px" />
       <ThreeTriangles left="15%" top="50%" />
       <SemiCircle right="0" top="70%" transform="rotate(180deg)" />
       <Text mb={6} fontFamily="heading" fontSize={['xl', '6xl']}>
-        OR MAYBE A CHINWAG?
+        FANCY A CHINWAG?
       </Text>
       <Box
         minW={['300px', '500px']}

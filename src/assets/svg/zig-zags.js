@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/core';
 
-function ZigZags({ top, right, left, bottom }) {
+function ZigZags({ top, right, left, bottom, display }) {
   return (
     <Box
       as="svg"
@@ -11,7 +11,7 @@ function ZigZags({ top, right, left, bottom }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       position="absolute"
-      display={['none', 'block']}
+      display={['none', display ? display : 'block']}
       top={top}
       left={left}
       right={right}

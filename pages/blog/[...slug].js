@@ -72,8 +72,8 @@ export default function BlogPost({ mdxSource, frontMatter, slug }) {
         minH="100vh"
         p={5}
       >
-        <SemiCircle />
-        <ZigZags />
+        <SemiCircle left="0" top="200px" />
+        <ZigZags right="5%" top="10px" />
         <Container maxW="1440px">
           <Text
             fontSize={['4xl', '5xl']}

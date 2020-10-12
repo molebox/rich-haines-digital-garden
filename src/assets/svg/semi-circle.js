@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/core';
 
-function SemiCircle({ top, right, left, bottom, ...rest }) {
+function SemiCircle({ top, right, left, bottom, display, ...rest }) {
   return (
     <Box
       as="svg"
@@ -10,7 +10,7 @@ function SemiCircle({ top, right, left, bottom, ...rest }) {
       viewBox="0 0 99 384"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      display={['none', 'block']}
+      display={['none', display ? display : 'block']}
       position="absolute"
       top={top}
       left={left}

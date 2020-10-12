@@ -1,19 +1,21 @@
 ---
-title: Statamic as headless CMS
+title: Statamic as headless CMS with Gatsby
 published: false
 author: Richard Haines
 tags: [tutorial, statamic, gatsby]
-description: How to use Statamic as a headless CMS hooked up to Gatsby
+description: How to use Statamic as a headless CMS with Gatsby
 growth: baby
 ---
 
 Statamic v3 is many things. It's a Content Management Studio (CMS) where data can be pulled via an API endpoint. It's a Static Site Generator (SSG) which can be deployed to any Content Delivery Network (CDN) known to man. It's a content creation tool, enabling content creators to write posts and store and distribute videos. It's an open source PHP based Laravel package that is designed to scale and be used as both a front and backend.
 
-Phew, that was a lot of joy to be throwing Statamics way. You may be thinking there is a but coming...... You'd be wrong. As a first time user I found the experience of both setting it up and grabbing data rather painless. Of course, I stumbled a few times and we will go over those together so that you don't have to do it alone. But all in all I'd have to say that I'm mightily impressed! Also the site and docs are just super cool to look at reading the copy feels like you're chatting with a mate.
+Phew, that was a lot of joy to be throwing Statamics way. As a first time user I found the experience of both setting it up and grabbing data rather painless. Of course, I stumbled a few times and we will go over those together so that you don't have to do it alone. But all in all I'd have to say that I'm mightily impressed! Also the site and docs are just super cool to look at reading the copy feels like you're chatting with a mate, down the pub on a Sunday.
 
-With the release of v3, Statamic introduced a formal way of grabbing the data stored, the content API. In v2 there was the possibility to create an addon which would supply JSON endpoints but with the introduction of the content API, getting your dirty little hands on that lovely data has become a first class citizen. Its now fully supported with a read-only endpoint. This feature at the time of writing is a PRO only feature, though we can still use it and try it out on a trial basis until we decide to purchase a license.
+With the release of v3, Statamic introduced a formal way of grabbing the data stored, the content API. In v2 there was the possibility to use an addon [Fetch](https://statamic.com/addons/aryeh-raber/fetch) which would supply JSON endpoints but with the introduction of the content API, getting your hands on that lovely data has become a first class citizen. It's now fully supported with a read-only endpoint. This feature at the time of writing is a PRO only feature, though we can still use it and try it out on a trial basis until we decide to purchase a license.
 
 So what are we going to build? We're going to be using Statamic as a headless CMS. We'll create a new Statamic project from scratch as well as a new Gatsby project from scratch and join the two, as one, like some super Jamstack baby from the future.
+
+You can view the final project repo here: [statamic-headless-gatsby-blog](https://github.com/molebox/statamic-headless-gatsby-blog)
 
 ### Prerequisites
 
@@ -53,9 +55,9 @@ COMPOSER_MEMORY_LIMIT=2G composer install
 
 This attempts to set the memory limit to 2GB, though I have to confess that this particular approach didn't work for me. Instead I had to manually set the new memory limit in the php.ini file. To do so go back to the laragon GUI and click the Menu button, PHP then php.ini. On line 401 change the memory allocation. I just whacked it up to 6GB (memory_limit = 6G) but this of course depends on your setup and what you can afford to spare. Anything above 3 and you should be super safe.
 
-Run composer install again and a vender folder should have been crated at the statamic projects root. Now we are cooking!! Next we will want to open the .env file at the project root and alter/add a few values.
+Run composer install again and a vender folder should have been crated at the Statamic projects root. Now we are cooking!! Next we will want to open the .env file at the project root and alter/add a few values.
 
-```.env
+```bash
 // At the top
 APP_URL=http://statamic-gatsby.test:81/
 
@@ -105,15 +107,51 @@ That will give you a project folder with a package.json and node_modules and not
 
 All pretty standard stuff
 
-- dev will spin up a development server
-- build will make it ready for the outside world
-- clean will tuck in its shirt and re-do its hair
-- pretty will apply makeup and tighten its belt
-- z will start it all over again from scratch. A clean plate if you will.
+- **dev** will spin up a development server
+- **build** will make it ready for the outside world
+- **clean** will tuck in it's shirt and re-do it's hair
+- **pretty** will apply makeup and tighten it's belt
+- **z** will start it all over again from scratch. A clean plate if you will.
 
 We are going to take advantage of a handy package called gatsby-source-statamic. This is basically a wrapper around a fetch request to our API endpoint that takes care of sorting out all our collections and assets. We have installed Chakra so that we can add some quick styling to our site. This tutorial won't be a deep dive into styling and will keep things pretty basic, Chakra will at least make the experience a little more pleasant on the eye. Finally we have added prettier as a dev dependency. No funny business, just for our piece of mind when we get those tabs in the wrong place and our spacing all mucked up from copying code from one file to another.
 
-Let's take a closer look at Statamic and how we can organise our blog posts before creating and styling our Gatsby frontend.
+Now we can create a gatsby-config.js file and add the following code. This is adding the Statamic plugin to our Gatsby app and passing in some base options. We have added our Statamic url (along with port, you might not have to do this), as well as defining a post collection and photos assets container. We will create these soon.
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-source-statamic`,
+      options: {
+        baseUrl: `http://statamic-gatsby.test:81`,
+        collections: [`posts`],
+        assets: [`photos`],
+      },
+    },
+  ],
+};
+```
+
+Because we are using Chakra we have to tell our app where the styles are coming form. Chakra asks that you wrap the root of your app in a provider which will pass down it's styles throughout the application tree. You can optionally also pass in a custom theme which would override whatever styles you like but we wont be covering that today. As we are using Gatsby as our React app we can use the wrapRootElement function which, as the name suggests, allows us to wrap our applications root with a provider. It's recommended to do this in both the gatsby-browser and gatsby-ssr files, so let's go ahead and create a single file we can export from both rather than duplicating code in both files. Create a new file at the root of the project called wrap-root-element.js and add the following code.
+
+```jsx
+import React from 'react';
+import { ChakraProvider } from '@chakra-ui/core';
+
+export const wrapRootElement = ({ element }) => (
+  <ChakraProvider resetCSS>{element}</ChakraProvider>
+);
+```
+
+Now create both gatsby-browser.js and gatsby-ssr.js and add the following code. We are going to import our new wrap-root-element file and export it again from each file.
+
+```js
+import { wrapRootElement as wrap } from './wrap-root-element';
+
+export const wrapRootElement = wrap;
+```
+
+That's our base setup done for Gatsby. We will be adding some node code soon to dynamically create our blog post pages from the data in Statamic. But for now let's take a closer look at Statamic and how we can organise our blog posts before creating and styling our Gatsby frontend.
 
 ## The Statamic GUI
 
@@ -131,13 +169,19 @@ On the left of the page you will see a menu with content, fields, tools and user
 
 Click on the collections tab on the left and then the blue create collection button, call the new collection Posts and hit create. Next you will see a dashboard, click create entity and just add some arbitrary name like My First Post. This will be our first test post. Add some text to the markdown content box, whatever you like, and hit save and publish. This new collection and entity within that collection will now be available to pull into our Gatsby site.
 
-But what if we wanted to add more data to our post? An image perhaps, or a date picker or contact form? Fear not young padawan because that's where the blueprints come into play. now that we have created our new collection we can create a blueprint for each of the new entities that are created under that collection. Head over to the blueprints section and click on the newly created Posts collection. From here you can choose to add or link fields. We wont cover linking fields but adding new fields simply enables you to have access to more fields when creating your collection entities. Add an images field so that each of our blog posts can have a hero image. The default settings will do for us.
+But what if we wanted to add more data to our post? An image perhaps, or a date picker or contact form? Fear not young padawan because that's where the blueprints come into play. Now that we have created our new collection we can create a blueprint for each of the new entities that are created under that collection. Head over to the blueprints section and click on the newly created Posts collection. From here you can choose to add or link fields. We wont cover linking fields but adding new fields simply enables you to have access to more fields when creating your collection entities. Add an images field so that each of our blog posts can have a hero image. The default settings will do for us.
 
-If you navigate back to the Posts collection and click on the first entity you create, My First Post, you should now be able to add an image. Pick and image from your filesystem or download one. Add some super informative text to the markdown content area (or just lorem ipsum it up) then create a few more posts, each with a title, content and image.
+If you navigate back to the Posts collection and click on the first entity you create, My First Post, you should now be able to add an image. Pick and image from your filesystem or download one. Add some super informative text to the markdown content area (or just [lorem ipsum](https://hipsum.co/) it up) then create a few more posts, each with a title, content and image.
+
+## Our post needs an image!
+
+Let's add an image to our blog post. Images are stored as assets in Statamic, they can be stored on the local file system, a serverless bucket, S3 or in your scanner ready to upload at a moments notice. Whatever way you choose to store them you'll want to create a container for them first. On the left menu click the Assets option then the blue Create Container button. Give it a title of photos and choose local for the file driver (where the images are being pulled from), you can leave the rest of the options as default.
+
+Now when we create our blog posts we can upload an image for each post from our local file system.
 
 ## Statamic feeding Gatsby
 
-When we left our Gatsby site all we had was a measly package.json and some scripts. Pah! Lets add some meat to those bones! Inside our index.js add teh following:
+When we left our Gatsby site all we had was a measly package.json a config file and some scripts. Pah! Let's add some meat to those bones! Inside our index.js add the following:
 
 ```jsx
 import React from 'react';
@@ -187,22 +231,160 @@ export const query = graphql`
     allCollectionPosts(sort: { fields: [title], order: ASC }) {
       nodes {
         slug
-        title
-        content
-        images {
-          permalink
-        }
       }
     }
   }
 `;
 ```
 
-WHOA! WTF! Yeah I know, that's quite a lot to digest all of a sudden. Let's break it down in a nice, simple bullet list.
+Yeah I know, that's quite a lot to digest all of a sudden. Let's break it down in a nice, simple bullet list.
 
 - Imports of the components we use from Chakra. Notice that we import a Link component
-- Imports from Gatsby, the graphql function and the Gatsby Link which we rename as we will be using the Chakra Link instead (for its default styling and accessibility)
+- Imports from Gatsby, the graphql function and the Gatsby Link which we rename as we will be using the Chakra Link instead (for it's default styling and accessibility)
 - The page accepts a data object which we destructure
 - We pull out the posts array from the data object
 - The main bulk of the component. A simple flex container which renders an h1 and a list of internal links to blog posts
-- An exported graphql query. It's exported so that our page can pick it up on render. It asks for the post slug, title, main content and image as a permalink. It also has a simple sort by title.
+- An exported graphql query. It's exported so that our page can pick it up on render. It asks for the post slug which we use for the url to navigate to.
+
+## Using the data from Statamic
+
+If you run yarn dev then you should see our title and one post underneath it. Clicking this will just throw an error as we haven't told Gatsby what to do with this information yet, let's do that now. Create a gatsby-node.js file at the projects root.
+
+```js
+const path = require(`path`);
+
+// create the pages from the statamic md content
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions;
+  // Our blog post layout template. Used to layout all out posts
+  const postLayoutTemplate = path.resolve('src/templates/post-layout.js');
+
+  return graphql(`
+    {
+      allCollectionPosts {
+        nodes {
+          slug
+          title
+          content
+          images {
+            permalink
+          }
+        }
+      }
+    }
+  `).then((result) => {
+    // If we get any errors throw them back at'cha
+    if (result.errors) {
+      throw result.errors;
+    }
+
+    // Grab the posts array
+    const posts = result.data.allCollectionPosts.nodes;
+
+    // Loop through the posts and create the post pages
+    posts.forEach((post, index) => {
+      // Get the previous and next posts so that we can navigate between them
+      const previous = index === post.length - 1 ? null : posts[index + 1];
+      const next = index === 0 ? null : posts[index - 1];
+      // Create the page using the slug
+      createPage({
+        path: post.slug,
+        component: postLayoutTemplate,
+        context: {
+          slug: post.slug,
+          previous,
+          next,
+        },
+      });
+    });
+  });
+};
+```
+
+There's a lot to unfold there, let's break it down.
+
+- We use the createPages API where we destructure the createPage and graphql functions
+- We create a new post layout template at an as yet un-created path
+- Much like our query in the index.js file, we request some data from Statamic. This time we want the posts title, it's slug, the actual markdown content and an image
+- As it's a promise we first see what is returned, if it's an error we just throw that back to the user (which is you), otherwise we get the posts and loop over them. For each post in the array we create a page using our post layout page (which we shall soon create). Our post layout can accept a page context so we use that to pass the slug and the previous and next index of any other posts that my exist.
+
+## Our post layout
+
+Now that Gatsby know what to do with our data, let's create the post layout template so that our blog post can be rendered on their own awesome pages. Create a new folder inside of the src folder called templates and inside that a file called post-layout.js
+
+```jsx
+import React from 'react';
+import { graphql, Link as GatsbyLink } from 'gatsby';
+import { Container, Text, Image, Link, Flex } from '@chakra-ui/core';
+import ReactMarkdown from 'react-markdown/with-html';
+
+const PostLayout = ({ data, pageContext }) => {
+  const { title, content, images } = data.collectionPosts;
+  const { permalink } = images[0];
+  const { previous, next } = pageContext;
+
+  return (
+    <Container maxW="100ch" centerContent>
+      <Text as="h1" fontSize="2xl" my={5}>
+        {title}
+      </Text>
+      <Image my={6} src={permalink} alt={title} />
+      <Text as="p" dangerouslySetInnerHTML={{ __html: content }} />
+      <Flex mt={6} w="100%" borderTop="solid 1px" p={3}>
+        <Flex w="100ch" justify="space-evenly">
+          {previous && (
+            <Link as={GatsbyLink} to={`/${previous.slug}`}>
+              Previous: {previous.title}
+            </Link>
+          )}
+
+          {next && (
+            <Link as={GatsbyLink} to={`/${next.slug}`}>
+              Next: {next.title}
+            </Link>
+          )}
+        </Flex>
+      </Flex>
+    </Container>
+  );
+};
+
+export default PostLayout;
+
+export const query = graphql`
+  query PostBySlug($slug: String!) {
+    collectionPosts(slug: { eq: $slug }) {
+      content
+      title
+      slug
+      images {
+        permalink
+      }
+    }
+  }
+`;
+```
+
+This is the meat and bones of our blog, it's our actual blog content. This component does quite a lot. We destructure the graphql data and the page context (which we passed into the page when we used the createPage function in gatsby-node.js). From then we grab our posts data, the title, content and image. From the page context we take the previous and next indexes which we will use as navigation slugs. Our image is rendered using the Image component from Chakra. We use dangerouslySetInnerHTML to set our blogs content in the page. This is not really recommended and we will cover this in more detail in just a second. Moving down the component we conditionally render either the next or previous post links depending on whether or not they actually exist. If either does exist we use the Chakra link and pass in the Gatsby link. This is because the Chakra link component has some nice accessible defaults. We then simply set the to prop (where this link is pointing to) with the indexes slug.
+
+Our query accepts the slug and pulls the data from the post that matches the passed in slug. Using dangerouslySetInnerHTML to set the HTML of the content is a bit silly really, especially when there are other, better ways of doing this. The markdown content that Statamic returns to us is parsed into pure HTML, that is, it's a bunch of paragraph tags literally wrapping our text. If you just render the content to the page like so {content} then you will see those tags. Instead of directly placing that HTML into the DOM and so bypassing the React (it doesn't care it's there, in fact it will bypass it completely as React compares the difference against the virtual DOM and it doesn't exist there), we can use a package called react-markdown which will parse the HTML for us and insert it into the page without using dangerouslySetInnerHTML.
+
+```bash
+yarn add react-markdown
+```
+
+Now we can simply replace our dangerouslySetInnerHTML with the react-markdown component setting its source to our content. We are parsing the HTML rendering it to the page. We pass the escapeHtml flag as false meaning that we we will render the HTML and that we trust it's source, which we do because we wrote it.
+
+```jsx
+// Other imports
+import ReactMarkdown from 'react-markdown/with-html';
+
+// Component stuff
+<ReactMarkdown source={content} escapeHtml={false} />;
+```
+
+## Final thoughts
+
+I had never used Statamic before, indeed I had never coded PHP and had been somewhat apprehensive as to how this was going to go and the learning curve that I might be letting myself in for. Add to the mix that I'm a windows dev (BOO! HISS!!) and I thought I was going to be in for a long ride. I was however pleasantly surprised at how easy it was to get things up and running using Statamic as a headless CMS. Once I ironed out the creases in setup I found the actual application really nice to work with. The menus are very intuitive and if there was anything that I couldn't find I was happy to see that the documentation was on point and the community very helpful. I did end up using a pre-made Gatsby plugin to bring in my data (why re-invent the wheel?) but the documentation for the [Content API](https://statamic.dev/content-api) is pretty clear and using this with something like [NextJS](https://nextjs.org/) should be a breeze too, pulling your data in via REST endpoints. I heard on the grapevine that the Statamic team are currently working on a GraphQL layer, which would be awesome.
+
+I'm definitely going to be trying out Statamic again, most likely with NextJS next time and most likely with a more complex use case. Hit me up with your thoughts on Statamic and any feedback you might have.
