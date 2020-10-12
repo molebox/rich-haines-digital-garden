@@ -39,7 +39,8 @@ const ContactForm = () => {
         as="form"
         name="contact-form"
         method="POST"
-        data-netlify="true"
+        //data-netlify="true"
+        netlify
         action="/form-success"
       >
         <input type="hidden" name="bot-field" />
