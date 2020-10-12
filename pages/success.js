@@ -3,7 +3,7 @@ import { Box, Container, Text } from '@chakra-ui/core';
 import { Chakra } from '@components/Chakra';
 import NavLink from '@components/nav-link';
 
-export default function FormSuccess() {
+export default function Success() {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
   return (
     <Chakra
