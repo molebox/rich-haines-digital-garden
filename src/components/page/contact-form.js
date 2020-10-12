@@ -40,6 +40,7 @@ const ContactForm = () => {
         name="contact-form"
         method="POST"
         data-netlify="true"
+        action="/form-success"
       >
         <input type="hidden" name="bot-field" />
         <FormControl w="100%" my={3} id="name" isRequired>
