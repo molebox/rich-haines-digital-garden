@@ -119,8 +119,8 @@ export default function Index({ cookies }) {
             </Container>
           </Grid>
         </Box>
-        <HorizontalScrollAnimation />
-        <ContactForm />
+        {/* <HorizontalScrollAnimation />
+        <ContactForm /> */}
         <Footer />
       </Chakra>
     </HomePageProvider>
