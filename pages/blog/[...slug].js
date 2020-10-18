@@ -22,6 +22,8 @@ import Navbar from '@components/Navbar';
 import { RoughNotation } from 'react-rough-notation';
 import Prerequisites from './../../src/components/post/prerequisites';
 import LearntSoFar from './../../src/components/post/learnt-so-far';
+import ThreeBall from './../../src/components/post/three-ball';
+import ThreeBallWithFloor from './../../src/components/post/three-ball-with-floor';
 
 const components = {
   code: Code,
@@ -55,6 +57,8 @@ const components = {
     <Image m="0 auto" src={props.src} alt={props.alt} boxSize={props.boxSize} />
   ),
   LearntSoFar,
+  ThreeBall,
+  ThreeBallWithFloor,
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {

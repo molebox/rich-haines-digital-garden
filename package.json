@@ -24,6 +24,7 @@
     "gray-matter": "^4.0.2",
     "gsap": "^3.5.1",
     "js-cookie": "^2.2.1",
+    "mdx-embed": "^0.0.14",
     "next": "^9.5.2",
     "next-cookies": "^2.0.3",
     "next-mdx-remote": "^1.0.0",
@@ -38,6 +39,8 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^3.11.0",
     "react-rough-notation": "^0.1.1",
+    "react-three-fiber": "^5.0.6",
+    "three": "^0.121.1",
     "use-cloudinary": "^3.1.6"
   },
   "devDependencies": {
