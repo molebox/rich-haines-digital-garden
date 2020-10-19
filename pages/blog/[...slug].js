@@ -4,6 +4,7 @@ import renderToString from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import matter from 'gray-matter';
 import glob from 'fast-glob';
+import dynamic from 'next/dynamic';
 
 import Code from '@components/Code';
 import { Chakra } from '@components/Chakra';
@@ -22,8 +23,18 @@ import Navbar from '@components/Navbar';
 import { RoughNotation } from 'react-rough-notation';
 import Prerequisites from './../../src/components/post/prerequisites';
 import LearntSoFar from './../../src/components/post/learnt-so-far';
-import ThreeBall from './../../src/components/post/three-ball';
-import ThreeBallWithFloor from './../../src/components/post/three-ball-with-floor';
+const ThreeBall = dynamic(
+  () => import('./../../src/components/post/three-ball'),
+  { ssr: false },
+);
+const ThreeBallDistort = dynamic(
+  () => import('./../../src/components/post/three-ball-distort'),
+  { ssr: false },
+);
+const ThreeBallWobble = dynamic(
+  () => import('./../../src/components/post/three-ball-wobble'),
+  { ssr: false },
+);
 
 const components = {
   code: Code,
@@ -33,12 +44,12 @@ const components = {
     </Text>
   ),
   h2: (props) => (
-    <Text fontSize="1xl" fontFamily="heading" my={3}>
+    <Text fontSize="xl" fontFamily="heading" my={3}>
       {props.children}
     </Text>
   ),
   h3: (props) => (
-    <Text fontSize="xl" fontFamily="heading" my={3}>
+    <Text fontSize="md" fontFamily="heading" my={3}>
       {props.children}
     </Text>
   ),
@@ -58,7 +69,8 @@ const components = {
   ),
   LearntSoFar,
   ThreeBall,
-  ThreeBallWithFloor,
+  ThreeBallDistort,
+  ThreeBallWobble,
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {

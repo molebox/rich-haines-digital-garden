@@ -1,8 +1,11 @@
-const withTM = require('next-transpile-modules');
+const withTM = require('next-transpile-modules')([
+  'gsap',
+  'three',
+  'drei',
+  'postprocessing',
+]);
 
-module.exports = withTM({
-  transpileModules: ['gsap'],
-});
+module.exports = withTM();
 
 module.exports = {
   env: {},

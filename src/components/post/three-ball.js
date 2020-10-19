@@ -1,6 +1,7 @@
 import React from 'react';
 import { Canvas } from 'react-three-fiber';
 import { Box } from '@chakra-ui/core';
+import { MeshDistortMaterial, MeshWobbleMaterial, Plane, Sphere } from 'drei';
 
 const ThreeBall = () => {
   return (
@@ -26,9 +27,11 @@ const ThreeBall = () => {
           />
         </mesh>
         {/*An ambient light that creates a soft light against the object */}
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.8} />
         {/*An directional light which aims form the given position */}
         <directionalLight position={[10, 10, 5]} intensity={1} />
+        {/*An point light, basically the same as directional. This one points from under */}
+        <pointLight position={[0, -10, 5]} intensity={1} />
       </Canvas>
     </Box>
   );
