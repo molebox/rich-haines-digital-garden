@@ -1,31 +1,28 @@
 import React from 'react';
-import { Canvas } from 'react-three-fiber';
-import { Box } from '@chakra-ui/core';
 import { MeshDistortMaterial, Sphere } from 'drei';
+import CanvasContainer from './canvas-container';
 
 const ThreeBallDistort = () => {
   return (
-    <Box maxW={1000} minW={300} w="auto" h={500} m="0 auto">
-      <Canvas>
-        {/*An ambient light that creates a soft light against the object */}
-        <ambientLight intensity={0.8} />
-        {/*An directional light which aims form the given position */}
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        {/*An point light, basically the same as directional. This one points from under */}
-        <pointLight position={[0, -10, 5]} intensity={1} />
+    <CanvasContainer>
+      {/*An ambient light that creates a soft light against the object */}
+      <ambientLight intensity={0.8} />
+      {/*An directional light which aims form the given position */}
+      <directionalLight position={[10, 10, 5]} intensity={1} />
+      {/*An point light, basically the same as directional. This one points from under */}
+      <pointLight position={[0, -10, 5]} intensity={1} />
 
-        {/* This sphere has a distort material attached to it */}
-        <Sphere visible position={[0, 0, 2]} args={[1, 16, 16]}>
-          <MeshDistortMaterial
-            color="#00A38D"
-            attach="material"
-            distort={0.4} // Strength, 0 disables the effect (default=1)
-            speed={2} // Speed (default=1)
-            roughness={0}
-          />
-        </Sphere>
-      </Canvas>
-    </Box>
+      {/* This sphere has a distort material attached to it */}
+      <Sphere visible position={[0, 0, 2]} args={[1, 16, 16]}>
+        <MeshDistortMaterial
+          color="#00A38D"
+          attach="material"
+          distort={0.4} // Strength, 0 disables the effect (default=1)
+          speed={2} // Speed (default=1)
+          roughness={0}
+        />
+      </Sphere>
+    </CanvasContainer>
   );
 };
 

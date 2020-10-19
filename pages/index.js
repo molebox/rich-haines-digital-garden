@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { Flex, Text, Container, Box, Image, Link, Grid } from '@chakra-ui/core';
 import { gsap } from 'gsap';
 import { Chakra } from '@components/Chakra';
@@ -21,6 +22,8 @@ import DotsBox from 'src/assets/svg/dots-box';
 import Footer from './../src/components/footer';
 import HorizontalScrollAnimation from './../src/components/page/horizontal-scroll-animation';
 import ContactForm from './../src/components/page/contact-form';
+
+// const ThreeModel = dynamic(() => import('./../src/components/post/three-model'),{ ssr: false });
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
@@ -119,6 +122,7 @@ export default function Index({ cookies }) {
             </Container>
           </Grid>
         </Box>
+        {/* <ThreeModel gltfPath="/scene.gltf" position={[0, 250, 0]} /> */}
         {/* <HorizontalScrollAnimation />
         <ContactForm /> */}
         <Footer />

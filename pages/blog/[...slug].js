@@ -36,6 +36,11 @@ const ThreeBallWobble = dynamic(
   { ssr: false },
 );
 
+const ThreeModel = dynamic(
+  () => import('./../../src/components/post/three-model'),
+  { ssr: false },
+);
+
 const components = {
   code: Code,
   h1: (props) => (
@@ -71,6 +76,7 @@ const components = {
   ThreeBall,
   ThreeBallDistort,
   ThreeBallWobble,
+  ThreeModel,
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {
