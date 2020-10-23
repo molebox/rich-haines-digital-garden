@@ -1,5 +1,5 @@
 import React from 'react';
-import { MeshWobbleMaterial, Sphere } from 'drei';
+import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
 import CanvasContainer from './canvas-container';
 
 const ThreeBallWobble = () => {

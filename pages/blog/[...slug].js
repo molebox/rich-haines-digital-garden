@@ -16,6 +16,7 @@ import {
   ListItem,
   Link,
   Image,
+  Spinner,
 } from '@chakra-ui/core';
 import SemiCircle from 'src/assets/svg/semi-circle';
 import ZigZags from './../../src/assets/svg/zig-zags';
@@ -23,6 +24,7 @@ import Navbar from '@components/Navbar';
 import { RoughNotation } from 'react-rough-notation';
 import Prerequisites from './../../src/components/post/prerequisites';
 import LearntSoFar from './../../src/components/post/learnt-so-far';
+import { Suspense } from 'react';
 const ThreeBall = dynamic(
   () => import('./../../src/components/post/three-ball'),
   { ssr: false },
@@ -33,11 +35,6 @@ const ThreeBallDistort = dynamic(
 );
 const ThreeBallWobble = dynamic(
   () => import('./../../src/components/post/three-ball-wobble'),
-  { ssr: false },
-);
-
-const ThreeModel = dynamic(
-  () => import('./../../src/components/post/three-model'),
   { ssr: false },
 );
 
@@ -76,7 +73,6 @@ const components = {
   ThreeBall,
   ThreeBallDistort,
   ThreeBallWobble,
-  ThreeModel,
 };
 
 export default function BlogPost({ mdxSource, frontMatter, slug }) {

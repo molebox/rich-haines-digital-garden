@@ -1,5 +1,5 @@
 import React from 'react';
-import { MeshDistortMaterial, Sphere } from 'drei';
+import { MeshDistortMaterial, Sphere } from '@react-three/drei';
 import CanvasContainer from './canvas-container';
 
 const ThreeBallDistort = () => {

@@ -29,6 +29,8 @@ const theme = {
   },
   colors: {
     brand: {
+      mix:
+        'linear-gradient(90deg, rgba(0,128,184,1) 0%, rgba(0,163,141,1) 20%, rgba(244,211,1,1) 40%, rgba(235,30,153,1) 60%, rgba(114,34,211,1) 80%)',
       text: '#121212',
       capri: {
         100: '#00BBF9',
