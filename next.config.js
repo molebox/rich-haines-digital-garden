@@ -6,4 +6,8 @@ const withTM = require('next-transpile-modules')([
   'postprocessing',
 ]);
 
+module.exports = {
+  env: {},
+  target: 'serverless',
+};
 module.exports = withTM();
