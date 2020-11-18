@@ -15,7 +15,9 @@ With the release of v3, Statamic introduced a formal way of grabbing the data st
 
 So what are we going to build? We're going to be using Statamic as a headless CMS. We'll create a new Statamic project from scratch as well as a new Gatsby project from scratch and join the two, as one, like some super Jamstack baby from the future.
 
-You can view the final project repo here: [statamic-headless-gatsby-blog](https://github.com/molebox/statamic-headless-gatsby-blog)
+You can view the final project repo here: [statamic-gatsby](https://github.com/molebox/statamic-gatsby). 
+
+And the live site here: [statamic-gatsby.netlify.app]
 
 ### Prerequisites
 
@@ -55,7 +57,7 @@ COMPOSER_MEMORY_LIMIT=2G composer install
 
 This attempts to set the memory limit to 2GB, though I have to confess that this particular approach didn't work for me. Instead I had to manually set the new memory limit in the php.ini file. To do so go back to the laragon GUI and click the Menu button, PHP then php.ini. On line 401 change the memory allocation. I just whacked it up to 6GB (memory_limit = 6G) but this of course depends on your setup and what you can afford to spare. Anything above 3 and you should be super safe.
 
-Run composer install again and a vender folder should have been crated at the Statamic projects root. Now we are cooking!! Next we will want to open the .env file at the project root and alter/add a few values.
+Run composer install again and a vender folder should have been created at the Statamic projects root. Now we are cooking!! Next we will want to open the .env file at the project root and alter/add a few values.
 
 ```bash
 // At the top
@@ -81,7 +83,7 @@ Now you can open config/statamic/editions.php and change the license to pro, lik
 'pro' => true,
 ```
 
-This will enble us to use the content API feature.
+This will enable us to use the content API feature.
 
 ## Create a new Gatsby project
 
@@ -89,7 +91,7 @@ I love Gatsby. I especially love creating fresh, brand spanking new Gatsby sites
 
 ```bash
 yarn init -y
-yarn add react react-dom gatsby @chakra-ui/core gatsby-source-statamic
+yarn add react react-dom gatsby @chakra-ui/core@next framer-motion gatsby-source-statamic
 yarn add prettier -D
 ```
 
@@ -124,8 +126,7 @@ module.exports = {
       resolve: `gatsby-source-statamic`,
       options: {
         baseUrl: `http://statamic-gatsby.test:81`,
-        collections: [`posts`],
-        assets: [`photos`],
+        collections: [`posts`]
       },
     },
   ],
@@ -161,7 +162,7 @@ Before we can enter our Statamic project we will need to create a new super user
 php please make:user
 ```
 
-To start our Statamic project open the laragon GUI and in the bottom left hit the Start All button. This will spin up an Apache server running our project. Then navigate to the url that is our project name with .test and possibly the port number. In my case it was http://statamic-gatsby.test:81 This will bring up a login page, login with the super user details you just created then once logged into the home page, click the control panel. It's time to create our first blog post, but before we do let's quickly go over some of the stuff we can do.
+To start our Statamic project open the laragon GUI and in the bottom left hit the Start All button. This will spin up an Apache server running our project. Then navigate to the url that is our project name with .test and possibly the port number. You might also have to try clicking the menu button on the top left and then the sites name which will have an external link icon. In my case it was http://statamic-gatsby.test:81 This will bring up a login page, login with the super user details you just created then once logged into the home page, click the control panel. It's time to create our first blog post, but before we do let's quickly go over some of the stuff we can do.
 
 On the left of the page you will see a menu with content, fields, tools and users. The content section holds stuff that will be displayed on the site. One of the options here, collections, is where we will be spending most of our time. But I first want to direct you towards the Fields section and the Blueprints option. A blueprint is like a template for a collection entity. When creating or editing a blueprint we can change what fields are expected when creating a collections entity through adding or creating widgets, such as text areas, images or markdown content areas.
 
@@ -169,15 +170,9 @@ On the left of the page you will see a menu with content, fields, tools and user
 
 Click on the collections tab on the left and then the blue create collection button, call the new collection Posts and hit create. Next you will see a dashboard, click create entity and just add some arbitrary name like My First Post. This will be our first test post. Add some text to the markdown content box, whatever you like, and hit save and publish. This new collection and entity within that collection will now be available to pull into our Gatsby site.
 
-But what if we wanted to add more data to our post? An image perhaps, or a date picker or contact form? Fear not young padawan because that's where the blueprints come into play. Now that we have created our new collection we can create a blueprint for each of the new entities that are created under that collection. Head over to the blueprints section and click on the newly created Posts collection. From here you can choose to add or link fields. We wont cover linking fields but adding new fields simply enables you to have access to more fields when creating your collection entities. Add an images field so that each of our blog posts can have a hero image. The default settings will do for us.
+But what if we wanted to add more data to our post? An image perhaps, or a date picker or contact form? Fear not young padawan because that's where the blueprints come into play. Now that we have created our new collection we can create a blueprint for each of the new entities that are created under that collection. Head over to the blueprints section and click on the newly created Posts collection. From here you can choose to add or link fields. We wont cover linking fields but adding new fields simply enables you to have access to more fields when creating your collection entities. Add an assets field and rename it images so that each of our blog posts can have a hero image. The default settings will do for us.
 
 If you navigate back to the Posts collection and click on the first entity you create, My First Post, you should now be able to add an image. Pick and image from your filesystem or download one. Add some super informative text to the markdown content area (or just [lorem ipsum](https://hipsum.co/) it up) then create a few more posts, each with a title, content and image.
-
-## Our post needs an image!
-
-Let's add an image to our blog post. Images are stored as assets in Statamic, they can be stored on the local file system, a serverless bucket, S3 or in your scanner ready to upload at a moments notice. Whatever way you choose to store them you'll want to create a container for them first. On the left menu click the Assets option then the blue Create Container button. Give it a title of photos and choose local for the file driver (where the images are being pulled from), you can leave the rest of the options as default.
-
-Now when we create our blog posts we can upload an image for each post from our local file system.
 
 ## Statamic feeding Gatsby
 

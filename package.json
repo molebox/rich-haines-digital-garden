@@ -19,6 +19,7 @@
     "@chakra-ui/core": "^1.0.0-rc.2",
     "@chakra-ui/theme": "^1.0.0-rc.2",
     "@jlengstorf/get-share-image": "^0.7.1",
+    "@react-three/cannon": "^0.5.3",
     "@react-three/drei": "^2.2.0",
     "fast-glob": "^3.2.4",
     "fuse.js": "^6.4.1",

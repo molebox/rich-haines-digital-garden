@@ -145,7 +145,7 @@ The third uses a drei Sphere with a distort material attached. A couple of light
 
 Drei (three in german) is a super helpful package that contains loads of helpers and abstractions for react-three-fiber. One thing that I noticed was that using drei with Nextjs (as this site does) will throw an error when trying to import stuff - cannot use import statement outside a module. This is because Nextjs uses common js modules on server side rendering. We can use withTM from next-transpile-modules in the next.config file to transpile the common js stuff in drei. We also need to dynamically import the component using the drei components and disable server side rendering. See [this issue](https://github.com/pmndrs/drei/issues/2) and [this PR](https://github.com/vercel/next.js/pull/14864).
 
-### where the component is used
+### If you are using Nextjs....
 
 ```js
 import dynamic from 'next/dynamic';
@@ -166,3 +166,9 @@ const withTM = require('next-transpile-modules')([
 
 module.exports = withTM();
 ```
+
+## The main players
+
+The Renderer in react-three-fiber(R3F) is the HTML canvas element which gets added dynamically to the DOM unless specifically added via an id or className. 
+
+The scene is the stage where everything plays out. The meshes encompass lights, groups, 3D positions and cameras. A scene can be thought of as a theater scene where the mesh or groups of meshes are the act that will play out, the lights give the mesh and its geometry and materials a purpose on the scene, they light them from angles and provide context to why they are there. The cameras and positions allow us to view them all from different angles. 

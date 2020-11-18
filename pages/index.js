@@ -30,6 +30,7 @@ import DotsBox from 'src/assets/svg/dots-box';
 import Footer from './../src/components/footer';
 import HorizontalScrollAnimation from './../src/components/page/horizontal-scroll-animation';
 import ContactForm from './../src/components/page/contact-form';
+import Cubes from './../src/components/page/cubes/cubes';
 
 export default function Index({ cookies }) {
   const tags = ['Jamstack', 'Blogging', 'Thoughts'];
@@ -80,7 +81,20 @@ export default function Index({ cookies }) {
           <BigCloud2 />
           <SmallCloud1 />
           <SmallCloud2 />
-          <Grid
+
+
+          <Box
+        w={["350px", "1000px"]}
+        h={["200px", "500px"]}
+        m="0 auto"
+        bgColor="brand.bg"
+        p={2}
+        mt={6}
+      >
+        <Cubes />
+      </Box>
+
+          {/* <Grid
             templateRows="1fr 150px"
             templateAreas={`
             'main main main'
@@ -126,7 +140,8 @@ export default function Index({ cookies }) {
               </Text>
               <NavLink href="/blogs/search">start reading</NavLink>
             </Container>
-          </Grid>
+          </Grid> */}
+          <NavLink href="/blogs/search">start reading</NavLink>
         </Box>
         {/* <HorizontalScrollAnimation />
         <ContactForm /> */}

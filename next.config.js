@@ -1,13 +1,9 @@
 const withTM = require('next-transpile-modules')([
   'gsap',
   'three',
-  'drei',
+  '@react-three/drei',
+  'react-three-fiber',
   'postprocessing',
 ]);
 
 module.exports = withTM();
-
-module.exports = {
-  env: {},
-  target: 'serverless',
-};

@@ -25,6 +25,11 @@ import { RoughNotation } from 'react-rough-notation';
 import Prerequisites from './../../src/components/post/prerequisites';
 import LearntSoFar from './../../src/components/post/learnt-so-far';
 import { Suspense } from 'react';
+import Stork from './../../src/components/bird/stork';
+import { Html } from '@react-three/drei';
+import { Canvas } from 'react-three-fiber';
+
+
 const ThreeBall = dynamic(
   () => import('./../../src/components/post/three-ball'),
   { ssr: false },
@@ -35,7 +40,9 @@ const ThreeBallDistort = dynamic(
 );
 const ThreeBallWobble = dynamic(
   () => import('./../../src/components/post/three-ball-wobble'),
-  { ssr: false },
+  { ssr: false }
+,
+
 );
 
 const components = {
@@ -92,6 +99,17 @@ export default function BlogPost({ mdxSource, frontMatter, slug }) {
         <SemiCircle left="0" top="200px" />
         <ZigZags right="5%" top="10px" />
         <Container maxW="1440px">
+        <Canvas colorManagement>
+            <Suspense
+              fallback={
+                <Html center>
+                  <Spinner />
+                </Html>
+              }
+            >
+              <Stork position={[10, 10, 100]} />
+            </Suspense>
+          </Canvas>
           <Text
             fontSize={['4xl', '5xl']}
             borderBottom="solid 3px"
